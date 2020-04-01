@@ -1,0 +1,25 @@
+:host {
+  ::ng-deep {
+    table {
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+
+      tr {
+        th {
+          font-weight: bold;
+        }
+
+        td,
+        th {
+          margin: 0;
+          padding: 0.5em 1em;
+        }
+      }
+
+      .edit-input {
+        width: 100%;
+      }
+    }
+  }
+}

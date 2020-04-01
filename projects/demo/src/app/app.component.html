@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-12 mt-5">
+    <div class="d-flex justify-content-center mb-4">
+      <input type="file" (change)="onFileSelect($event.target['files'])" accept="application/json">
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6 m-1" style="overflow-x: scroll">
+        <ng2-json-table [data]="object" (onChange)="dataChange($event)"></ng2-json-table>
+      </div>
+      <div class="col-md-5 m-1">
+        <pre class="border">{{output | json}}</pre>
+      </div>
+    </div>
+  </div>
+</div>

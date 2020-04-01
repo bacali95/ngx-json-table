@@ -1,0 +1,17 @@
+{
+  "name": "ng2-json-table",
+  "version": "1.0.0",
+  "description": "Show and edit a JSON object in a table",
+  "repository": "https://github.com/bacali95/ng-json-table.git",
+  "author": "Nasreddine Bac Ali",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.1.0",
+    "@angular/core": "^9.1.0",
+    "@angular/forms": "^9.1.0",
+    "tslib": "^1.11.1"
+  }
+}

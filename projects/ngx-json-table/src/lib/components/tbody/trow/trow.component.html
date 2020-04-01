@@ -1,0 +1,33 @@
+<td style="width: 40%"
+    (dblclick)="!item.editKey && item.toggleEditKey()"
+    (mouseenter)="item.showDelete = true;item.isComplex && (item.showAdd = true)"
+    (mouseleave)="item.showDelete = false;item.showAdd = false"
+    (keydown.escape)="item.editKey && item.toggleEditKey()">
+  <span *ngFor="let _ of counter(item.level)">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span *ngIf="!item.isComplex">&#10551;</span>
+  <span *ngIf="item.isComplex"> {{item.showChildren ? '&#8722;' : '&#43;'}} </span>
+  <span *ngIf="!item.editKey" [ngStyle]="{'cursor': item.isComplex ? 'pointer' : ''}"
+        (click)="item.isComplex && item.toggleShowChildren($event['ctrlKey'])">&nbsp;{{item.key}}</span>
+  <span *ngIf="item.editKey">
+      <input [value]="item.key" #itemInput [ngStyle]="{'border-color': item.error ? 'red' : ''}"
+             (keydown.enter)="changeNodeKey(item, itemInput.value)"/>
+      </span>
+  <span style="color: darkgray" *ngIf="item.isComplex">
+        {{item.isArray ? '[Array]' : '{Object}'}}
+      </span>
+  <span *ngIf="item.showDelete" class="float-right pl-1"
+        style="color: darkred; cursor: pointer"
+        (click)="deleteItem(item)">&#215;</span>
+  <span *ngIf="item.showAdd" class="float-right pr-1"
+        style="color: green; cursor: pointer"
+        (click)="addChildItem(item)">&#43;</span>
+</td>
+<td *ngIf="item.canAppear()" style="width: 60%"
+    (dblclick)="!item.editValue && item.toggleEditValue()"
+    (keydown.escape)="item.editValue && item.toggleEditValue()">
+  <span *ngIf="!item.editValue">{{item.value}}</span>
+  <span *ngIf="item.editValue">
+      <input [value]="item.value" #itemInput class="edit-input"
+             (keydown.enter)="changeNodeValue(item, itemInput.value)"/>
+      </span>
+</td>

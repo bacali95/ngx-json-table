@@ -1,0 +1,10 @@
+<tr>
+  <th [ngStyle]="{'width': settings.key.width}">
+    {{settings.key.text}}
+    <span class="float-right" *ngIf="settings.key.sort"
+          (click)="toggleSortDirection()" style="cursor: pointer">
+      {{settings.key.sortDirection === 'asc' ? '&#8711;' : '&#8710;'}}
+    </span>
+  </th>
+  <th [ngStyle]="{'width': settings.value.width}">{{settings.value.text}}</th>
+</tr>

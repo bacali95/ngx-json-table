@@ -1,0 +1,7 @@
+<ng-container *ngFor="let item of table;">
+  <tr ngx-json-table-trow
+      [item]="item"
+      (onChange)="somethingChanged($event)"
+      *ngIf="item.canAppear()">
+  </tr>
+</ng-container>

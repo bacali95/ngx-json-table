@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng2-json-table": {
+    "ngx-json-table": {
       "projectType": "library",
-      "root": "projects/ng2-json-table",
-      "sourceRoot": "projects/ng2-json-table/src",
+      "root": "projects/ngx-json-table",
+      "sourceRoot": "projects/ngx-json-table/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ng2-json-table/tsconfig.lib.json",
-            "project": "projects/ng2-json-table/ng-package.json"
+            "tsConfig": "projects/ngx-json-table/tsconfig.lib.json",
+            "project": "projects/ngx-json-table/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng2-json-table/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-json-table/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng2-json-table/src/test.ts",
-            "tsConfig": "projects/ng2-json-table/tsconfig.spec.json",
-            "karmaConfig": "projects/ng2-json-table/karma.conf.js"
+            "main": "projects/ngx-json-table/src/test.ts",
+            "tsConfig": "projects/ngx-json-table/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-json-table/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ng2-json-table/tsconfig.lib.json",
-              "projects/ng2-json-table/tsconfig.spec.json"
+              "projects/ngx-json-table/tsconfig.lib.json",
+              "projects/ngx-json-table/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -171,5 +171,5 @@
       }
     }
   },
-  "defaultProject": "ng2-json-table"
+  "defaultProject": "ngx-json-table"
 }

@@ -1,0 +1,11 @@
+<table>
+  <thead ngx-json-table-thead
+         [settings]="settings.headers"
+         (onSortDirectionChange)="tbody.toggleSortDirection()">
+  </thead>
+  <tbody ngx-json-table-tbody
+         [data]="data" #tbody
+         [settings]="settings"
+         (onChange)="onChange.emit($event)">
+  </tbody>
+</table>

@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ng2-json-table",
+  "dest": "../../dist/ngx-json-table",
   "whitelistedNonPeerDependencies": [
     "lodash"
   ],

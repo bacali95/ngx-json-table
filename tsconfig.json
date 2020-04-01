@@ -19,8 +19,8 @@
       "dom"
     ],
     "paths": {
-      "ng2-json-table": [
-        "projects/ng2-json-table/src/public-api.ts"
+      "ngx-json-table": [
+        "projects/ngx-json-table/src/public-api.ts"
       ]
     }
   }

@@ -12,6 +12,6 @@
   ],
   "include": [
     "src/**/*.d.ts",
-    "../ng2-json-table/src/**/*.ts"
+    "../ngx-json-table/src/**/*.ts"
   ]
 }

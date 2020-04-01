@@ -1,27 +1,27 @@
-export class TableRow {
+export class JsonTreeNode {
   id: string;
-  key: string | number;
+  key: string;
   value: any;
   level: number;
   isComplex: boolean;
   isArray: boolean;
-  parent?: TableRow;
-  children: TableRow[];
+  parent: JsonTreeNode;
+  children: JsonTreeNode[];
   showChildren: boolean;
-  editKey: boolean;
-  editValue: boolean;
-  error: boolean;
-  showAdd: boolean;
-  showDelete: boolean;
+  editKey: boolean = false;
+  editValue: boolean = false;
+  error: boolean = false;
+  showAdd: boolean = false;
+  showDelete: boolean = false;
 
   constructor(
-    key: string | number,
+    key: string,
     value: any,
     level?: number,
     isComplex?: boolean,
     isArray?: boolean,
-    parent?: TableRow,
-    children?: TableRow[],
+    parent?: JsonTreeNode,
+    children?: JsonTreeNode[],
     showChildren?: boolean,
   ) {
     this.id = `${Math.random().toString(36).substr(2, 9)}`;
@@ -34,22 +34,17 @@ export class TableRow {
     this.parent = parent;
     this.children = children ?? [];
     this.showChildren = showChildren ?? false;
-    this.editKey = false;
-    this.editValue = false;
-    this.error = false;
-    this.showAdd = false;
-    this.showDelete = false;
   }
 
   toggleShowChildren(allLevels: boolean = false) {
     this.showChildren = !this.showChildren;
     if (allLevels) {
-      const processAllLevels = (parent: TableRow) => {
+      const processAllLevels = (parent: JsonTreeNode) => {
         for (const child of parent.children) {
           child.showChildren = parent.showChildren;
           processAllLevels(child);
         }
-      }
+      };
       processAllLevels(this);
     }
   }
@@ -67,7 +62,7 @@ export class TableRow {
     !this.isComplex && !this.isArray && (this.editValue = !this.editValue);
   }
 
-  addChild(child: TableRow) {
+  addChild(child: JsonTreeNode) {
     this.children.push(child);
   }
 
@@ -75,7 +70,7 @@ export class TableRow {
     return this.canAppearCheck(this);
   }
 
-  private canAppearCheck(child: TableRow) {
+  private canAppearCheck(child: JsonTreeNode) {
     if (!child.parent) return true;
     return child.parent.showChildren && this.canAppearCheck(child.parent);
   }

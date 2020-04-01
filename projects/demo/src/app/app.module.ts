@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Ng2JsonTableModule } from 'ng2-json-table';
+import { NgxJsonTableModule } from 'ngx-json-table';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -17,7 +17,7 @@ import { routes } from './app.routes';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    Ng2JsonTableModule,
+    NgxJsonTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

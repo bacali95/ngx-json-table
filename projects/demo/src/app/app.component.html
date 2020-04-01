@@ -5,10 +5,13 @@
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col-md-6 m-1" style="overflow-x: scroll">
-        <ng2-json-table [data]="object" (onChange)="dataChange($event)"></ng2-json-table>
+        <ngx-json-table [data]="object"
+                        [settings]="settings"
+                        (onChange)="json.innerText = stringify($event)">
+        </ngx-json-table>
       </div>
       <div class="col-md-5 m-1">
-        <pre class="border">{{output | json}}</pre>
+        <pre class="border" #json>{{object | json}}</pre>
       </div>
     </div>
   </div>

@@ -5,13 +5,13 @@ export interface Settings {
 
 export interface HeadSettings {
   key?: {
-    text: string;
+    text?: string;
     width?: string;
     sort?: boolean;
     sortDirection?: SortType;
   };
   value?: {
-    text: string;
+    text?: string;
     width?: string;
   };
 }

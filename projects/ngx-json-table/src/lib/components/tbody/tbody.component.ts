@@ -1,37 +1,42 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { JsonTreeNode } from '../../lib/json-tree-node';
-import { Settings, SortType } from '../../lib/settings';
-import { JsonObject, JsonTreeEvent, JsonValue } from '../../lib/helpers';
+import { Icons, Settings, SortType } from '../../lib/settings';
+import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
+import { NgxJsonTableTheadComponent } from '../thead/thead.component';
 
 @Component({
   selector: '[ngx-json-table-tbody]',
   templateUrl: './tbody.component.html',
-  styleUrls: ['./tbody.component.css']
+  styleUrls: ['./tbody.component.scss']
 })
 export class NgxJsonTableTbodyComponent implements OnChanges {
 
-  @Input() data: JsonObject;
+  @Input() data: JsonValue = {};
+  @Input() head: NgxJsonTableTheadComponent;
   @Input() settings: Settings;
-  @Output() onChange = new EventEmitter<any>();
+  @Input() icons: Icons;
+  @Output() dataChange = new EventEmitter<any>();
 
-  jsonTree: JsonTreeNode;
-  table: JsonTreeNode[];
-  sortDirection: SortType;
+  currentData: JsonValue = {};
+  jsonTree: JsonTreeNode = new JsonTreeNode('root', '', 'object', -1, false, null, [], true);
+  table: JsonTreeNode[] = [];
 
   constructor() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.sortDirection = this.settings.headers.key.sortDirection;
-    this.rebuildJsonTree();
-    this.rebuildTable();
-    if (!changes.data?.isFirstChange()) {
-      this.onChange.next(this.data);
+  ngOnChanges({data, settings, icons}: SimpleChanges): void {
+    if (data && this.currentData !== this.data) {
+      this.data = this.data ?? {};
+      this.currentData = this.data;
+      this.rebuildJsonTree();
+      this.rebuildTable();
+      !data.isFirstChange() && this.dataChange.next(this.data);
+      this.head.root = this.jsonTree;
     }
   }
 
   rebuildJsonTree() {
-    this.jsonTree = new JsonTreeNode('root', '', -1, true, false, null, [], true);
+    this.jsonTree.children = [];
     this.buildJsonTree(this.jsonTree, this.data);
   }
 
@@ -46,7 +51,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
     for (const key of keys) {
       const value = object[key];
       const node = new JsonTreeNode(key, typeof value !== 'object' ? value : '',
-        level, typeof value === 'object', false, root);
+        typeof value, level, false, root, [], this.settings.expandAll);
       root.addChild(node);
       typeof value === 'object' && this.buildJsonTree(node, value, level + 1);
     }
@@ -68,23 +73,49 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   }
 
   jsonTreeToObject(root: JsonTreeNode): JsonValue {
-    const result = root.isComplex
-      ? root.isArray ? [] : {}
-      : root.value;
-    for (const node of root.children) {
-      result[node.key] = this.jsonTreeToObject(node);
+    let result: any;
+    if (root.isComplex) {
+      result = root.isArray ? [] : {};
+      for (const node of root.children) {
+        result[node.key] = this.jsonTreeToObject(node);
+      }
+    } else {
+      const value = `${root.value}`;
+      if (`${parseFloat(value)}` === value) {
+        result = parseFloat(value);
+      } else if (['true', 'false'].includes(value.toLowerCase())) {
+        result = value === 'true';
+      } else {
+        result = value;
+      }
     }
     return result;
   }
 
-  toggleSortDirection() {
-    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    this.sortJsonTree(this.jsonTree, this.sortDirection);
+  toggleSortDirection(sortDirection) {
+    this.sortJsonTree(this.jsonTree, sortDirection);
     this.somethingChanged('sort');
   }
 
   somethingChanged(event: JsonTreeEvent) {
-    event !== 'edit' && this.rebuildTable();
-    this.onChange.next(this.jsonTreeToObject(this.jsonTree));
+    switch (event) {
+      case 'add':
+        this.rebuildTable();
+        this.currentData = this.jsonTreeToObject(this.jsonTree);
+        break;
+      case 'sort':
+      case 'delete':
+        this.rebuildTable();
+        this.currentData = this.jsonTreeToObject(this.jsonTree);
+        this.dataChange.next(this.currentData);
+        break;
+      case 'edit':
+        this.currentData = this.jsonTreeToObject(this.jsonTree);
+        this.dataChange.next(this.currentData);
+        break;
+      case 'clean':
+        this.rebuildTable();
+        break;
+    }
   }
 }

@@ -1,0 +1,28 @@
+.float-right {
+  float: right;
+}
+
+.row-key-value {
+  display: inline-block;
+  word-break: break-all;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 50px;
+  padding: 3px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  span {
+    margin: 5px;
+    width: 100%;
+  }
+
+  span:hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
+}

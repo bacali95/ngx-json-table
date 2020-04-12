@@ -70,7 +70,7 @@ export const deepExtend = function (...objects: Array<any>): any {
   return target;
 };
 
-export type JsonTreeEvent = 'add' | 'edit' | 'delete' | 'sort';
+export type JsonTreeEvent = 'add' | 'edit' | 'delete' | 'sort' | 'clean';
 
 export declare type JsonPrimitive = string | number | boolean | null;
 export declare type JsonValue = JsonPrimitive | JsonArray | JsonObject | undefined;

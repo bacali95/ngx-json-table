@@ -1,0 +1,37 @@
+<span [style]="{'margin-left': 20 * item.level + 'px'}">
+  <span *ngIf="!item.isComplex"
+        [innerHTML]="icons.simpleChild.html | sanitizeHtml"></span>
+  <span *ngIf="item.isComplex"
+        [innerHTML]="icons[item.showChildren ? 'collapse' : 'expand'].html | sanitizeHtml"></span>
+  <span *ngIf="!item.edit || !item.isKeyEditable()"
+        [ngStyle]="{cursor: item.isComplex ? 'pointer' : ''}"
+        (click)="item.isComplex && item.toggleShowChildren($event['ctrlKey'])" class="row-key-value">{{item.key}}
+    <span style="color: darkgray" *ngIf="item.isComplex">
+      {{(item.isArray ? '[' : '{') + item.children.length + (item.isArray ? ']' : '}')}}
+    </span>
+  </span>
+  <span *ngIf="item.edit && item.isKeyEditable()">
+    <input [value]="item.key" #keyInput
+           [ngStyle]="{'border-color': item.error ? 'red' : ''}"
+           (keyup)="item.key = keyInput.value"/>
+  </span>
+  <span *ngIf="!item.edit && item.showEditPanel" class="float-right">
+    <span *ngIf="item.isComplex" (click)="toggleDropdownMenu(dropdown)"
+          [innerHTML]="icons.addChild.html | sanitizeHtml"></span>
+    <span class="dropdown-content" #dropdown>
+      <span (click)="addChild()">Value</span><br>
+      <span (click)="addChild(true)">Object</span><br>
+      <span (click)="addChild(true, true)">Array</span>
+    </span>
+    <span (click)="item.toggleEdit()"
+          [innerHTML]="icons.editChild.html | sanitizeHtml"></span>
+    <span (click)="item.delete();onChange.emit('delete')"
+          [innerHTML]="icons.deleteChild.html | sanitizeHtml"></span>
+  </span>
+  <span *ngIf="item.edit" class="float-right">
+    <span (click)="onEnterKeyListener()"
+          [innerHTML]="icons.confirmEditChild.html | sanitizeHtml"></span>
+    <span (click)="onEscapeKeyListener()"
+          [innerHTML]="icons.cancelEditChild.html | sanitizeHtml"></span>
+  </span>
+</span>

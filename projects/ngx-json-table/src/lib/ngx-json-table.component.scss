@@ -16,10 +16,19 @@
           padding: 0.5em 1em;
         }
       }
+    }
 
-      .edit-input {
-        width: 100%;
-      }
+    .ngx-json-table-icon {
+      cursor: pointer;
+      font-size: 18px;
+      max-width: 18px;
+      max-height: 18px;
+      margin-left: 3px;
+      margin-right: 5px;
+    }
+
+    .ngx-json-table-icon.material-icons, .ngx-json-table-icon.fa {
+      font-size: 16px;
     }
   }
 }

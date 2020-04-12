@@ -1,36 +1,38 @@
+export type JsonValueType = 'bigint' | 'number' | 'string' | 'object' | 'boolean' | 'function' | 'symbol' | 'undefined';
+
 export class JsonTreeNode {
   id: string;
   key: string;
+  prevKey: string;
   value: any;
+  prevValue: any;
   level: number;
-  isComplex: boolean;
+  type: JsonValueType;
   isArray: boolean;
   parent: JsonTreeNode;
   children: JsonTreeNode[];
   showChildren: boolean;
-  editKey: boolean = false;
-  editValue: boolean = false;
+  edit: boolean = false;
+  showEditPanel: boolean = false;
   error: boolean = false;
-  showAdd: boolean = false;
-  showDelete: boolean = false;
+  isNew: boolean = false;
 
   constructor(
     key: string,
     value: any,
+    type: JsonValueType,
     level?: number,
-    isComplex?: boolean,
     isArray?: boolean,
     parent?: JsonTreeNode,
     children?: JsonTreeNode[],
     showChildren?: boolean,
   ) {
     this.id = `${Math.random().toString(36).substr(2, 9)}`;
-    this.key = key;
-    this.value = value;
+    this.key = this.prevKey = key;
+    this.value = this.prevValue = value;
+    this.type = type;
     this.level = level ?? 0;
-    this.isComplex = isComplex ?? false;
     this.isArray = isArray ?? false;
-    this.level = level ?? 0;
     this.parent = parent;
     this.children = children ?? [];
     this.showChildren = showChildren ?? false;
@@ -49,17 +51,15 @@ export class JsonTreeNode {
     }
   }
 
-  setError() {
-    this.error = true;
-    setTimeout(() => this.error = false, 2000);
+  checkNotUniqueKey(): boolean {
+    return (this.key === '' || (this.parent
+      && this.parent.children.filter(c => c.id !== this.id && c.key === this.key).length > 0))
+      && (this.error = true)
+      && (setTimeout(() => this.error = false, 2000) !== null);
   }
 
-  toggleEditKey() {
-    !this.parent?.isArray && (this.editKey = !this.editKey);
-  }
-
-  toggleEditValue() {
-    !this.isComplex && !this.isArray && (this.editValue = !this.editValue);
+  toggleEdit() {
+    this.edit = !this.edit;
   }
 
   addChild(child: JsonTreeNode) {
@@ -75,12 +75,31 @@ export class JsonTreeNode {
     return child.parent.showChildren && this.canAppearCheck(child.parent);
   }
 
-  changeValue(value) {
-    this.value = value;
+  get isComplex(): boolean {
+    return this.type === 'object';
   }
 
-  changeKey(key) {
-    this.key = key;
+  isKeyEditable() {
+    return !this.parent?.isArray;
   }
 
+  resetState() {
+    this.key = this.prevKey;
+    this.value = this.prevValue;
+  }
+
+  updateState() {
+    this.prevKey = this.key;
+    this.prevValue = this.value;
+  }
+
+  delete() {
+    const parentIndex = this.parent.children.findIndex((node) => node.id === this.id);
+    this.parent.children.splice(parentIndex, 1);
+    if (this.parent.isArray) {
+      for (let i = parentIndex; i < this.parent.children.length; i++) {
+        this.parent.children[i].key = `${parseInt(this.parent.children[i].key, 10) - 1}`;
+      }
+    }
+  }
 }

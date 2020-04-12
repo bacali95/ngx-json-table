@@ -1,0 +1,3 @@
+settings = {
+    editable: true
+};

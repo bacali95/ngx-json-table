@@ -3,24 +3,31 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxJsonTableComponent } from './ngx-json-table.component';
-import { NgxJsonTableTbodyModule } from './components/tbody/tbody.module';
-import { NgxJsonTableTheadModule } from './components/thead/thead.module';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { NgxJsonTableTbodyComponent } from './components/tbody/tbody.component';
+import { NgxJsonTableTrowComponent } from './components/tbody/trow/trow.component';
+import { NgxJsonTableKeyComponent } from './components/tbody/key/key.component';
+import { NgxJsonTableValueComponent } from './components/tbody/value/value.component';
+import { NgxJsonTableTheadComponent } from './components/thead/thead.component';
+
+const COMPONENTS = [
+  NgxJsonTableTbodyComponent,
+  NgxJsonTableTrowComponent,
+  NgxJsonTableKeyComponent,
+  NgxJsonTableValueComponent,
+  NgxJsonTableTheadComponent,
+  NgxJsonTableComponent,
+  SanitizeHtmlPipe
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
-    NgxJsonTableTbodyModule,
-    NgxJsonTableTheadModule,
   ],
-  declarations: [
-    NgxJsonTableComponent,
-  ],
-  exports: [
-    NgxJsonTableComponent,
-  ],
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS],
 })
 export class NgxJsonTableModule {
 }

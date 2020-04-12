@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Settings } from './lib/settings';
-import { deepExtend, JsonObject } from './lib/helpers';
+import { Icons, iconsPackages, Settings } from './lib/settings';
+import { deepExtend } from './lib/helpers';
 
 @Component({
   selector: 'ngx-json-table',
@@ -9,30 +9,44 @@ import { deepExtend, JsonObject } from './lib/helpers';
 })
 export class NgxJsonTableComponent implements OnChanges {
 
-  @Input() data: JsonObject;
-  @Input() settings: Settings = {};
-  @Output() onChange = new EventEmitter<any>();
+  @Input() data: any;
+  @Input() settings: Settings;
+  @Output() dataChange = new EventEmitter<any>();
 
   defaultSettings: Settings = {
-    headers: {
-      key: {
-        text: 'Key',
-        width: '30%',
-        sort: false,
-        sortDirection: 'asc'
-      },
-      value: {
-        text: 'Value',
-        width: '30%'
-      },
+    key: {
+      headerText: 'Key',
+      width: '40%',
     },
-    body: {}
+    value: {
+      headerText: 'Value',
+      width: '60%'
+    },
+    editable: true,
+    sortable: false,
+    sortDirection: 'asc',
+    expandAll: false,
   };
 
   constructor() {
+    this.defaultSettings.icons = iconsPackages.basic;
+    this.buildIcons(this.defaultSettings.icons);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.settings = deepExtend({}, this.defaultSettings, this.settings);
+    if (changes.settings) {
+      this.defaultSettings.icons = iconsPackages[this.settings?.iconPackage ?? 'basic'];
+      this.defaultSettings = deepExtend({}, this.defaultSettings, this.settings);
+      this.buildIcons(this.defaultSettings.icons);
+    }
+  }
+
+  buildIcons(icons: Icons) {
+    for (const [, value] of Object.entries(icons)) {
+      value.class = value.class ?? '';
+      value.innerText = value.innerText ?? '';
+      value.color = value.color ?? 'inherit';
+      value.html = value.html ?? `<i class="ngx-json-table-icon ${value.class}" style="color: ${value.color}">${value.innerText}</i>`;
+    }
   }
 }

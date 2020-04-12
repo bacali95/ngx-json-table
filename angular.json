@@ -64,6 +64,8 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/highlight.js/styles/dracula.css",
               "projects/demo/src/app/theme/theme.scss"
@@ -132,14 +134,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
-              "projects/demo/src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/highlight.js/styles/dracula.css",
-              "projects/demo/src/app/theme/theme.scss"
-            ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "projects/demo/src/styles.css"
             ]
           }
         },

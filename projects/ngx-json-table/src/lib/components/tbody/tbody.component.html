@@ -1,7 +1,14 @@
 <ng-container *ngFor="let item of table;">
   <tr ngx-json-table-trow
       [item]="item"
+      [settings]="settings"
+      [icons]="icons"
       (onChange)="somethingChanged($event)"
       *ngIf="item.canAppear()">
   </tr>
 </ng-container>
+<tr *ngIf="!table || table.length === 0">
+  <td colspan="2">
+    No data Found
+  </td>
+</tr>

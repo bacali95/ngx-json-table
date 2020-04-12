@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxJsonTableModule } from 'ngx-json-table';
 
+import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-
+import { ScrollPositionDirective } from './theme/directives/scrollPosition.directive';
 @NgModule({
   declarations: [
     AppComponent,
+    ScrollPositionDirective,
   ],
   imports: [
     BrowserModule,
@@ -18,6 +20,7 @@ import { routes } from './app.routes';
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxJsonTableModule,
+    PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

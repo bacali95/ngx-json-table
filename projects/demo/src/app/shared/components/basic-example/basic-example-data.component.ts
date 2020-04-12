@@ -10,7 +10,6 @@ import { Settings } from 'ngx-json-table';
 export class BasicExampleDataComponent {
 
   settings: Settings = {
-    sortable: true,
     expandAll: true,
   };
 

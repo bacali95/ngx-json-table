@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
 import { JsonTreeEvent } from '../../../lib/helpers';
-import { Icons } from 'ngx-json-table';
+import { Icons } from '../../../lib/settings';
 
 @Component({
   selector: '[ngx-json-table-key]',

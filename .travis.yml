@@ -16,13 +16,13 @@ addons:
       - g++-4.8
 
 before_install:
-  - npm i -g yarn@latest
+  - npm i -g npm@latest
 
 install:
-  - yarn
+  - npm install
 
 script:
-  - yarn build:ci
+  - npm run build:ci
 
 git:
   depth: 1

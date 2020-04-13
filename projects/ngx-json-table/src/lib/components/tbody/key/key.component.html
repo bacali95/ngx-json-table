@@ -13,7 +13,7 @@
   <span *ngIf="(item.isNew || settings.options.edit.key) && item.edit && item.isKeyEditable()">
     <input [value]="item.key" #keyInput
            [ngStyle]="{'border-color': item.error ? 'red' : ''}"
-           (keyup)="item.key = keyInput.value"/>
+           (keyup)="item.key = keyInput.value.trim()"/>
   </span>
   <span *ngIf="!item.edit && item.showEditPanel" class="float-right">
     <span *ngIf="item.isComplex && settings.options.add" (click)="toggleDropdownMenu(dropdown)"

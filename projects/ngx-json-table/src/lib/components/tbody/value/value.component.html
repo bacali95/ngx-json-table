@@ -1,5 +1,5 @@
-<span *ngIf="!item.edit || item.isComplex">{{item.value}}</span>
-<span *ngIf="item.edit && !item.isComplex" class="edit-input">
+<span *ngIf="(!item.isNew && !settings.options.edit.value) || !item.edit || item.isComplex">{{item.value}}</span>
+<span *ngIf="(item.isNew || settings.options.edit.value) && item.edit && !item.isComplex" class="edit-input">
   <textarea [value]="item.value" #valueInput
             (keyup)="item.value = valueInput.value"></textarea>
 </span>

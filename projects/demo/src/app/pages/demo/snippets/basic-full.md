@@ -4,13 +4,23 @@ import { Settings } from 'ngx-json-table';
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ngx-json-table [settings]="settings" [data]="data"></ngx-json-table>
+    <ngx-json-table [data]="data" [settings]="settings"></ngx-json-table>
   `,
 })
 export class BasicExampleDataComponent {
 
   settings: Settings = {
-    expandAll: true
+    sortable: true,
+    sortDirection: 'desc',
+    expandAll: true,
+    options: {
+      add: true,
+      edit: {
+        key: true,
+        value: true
+      },
+      delete: true,
+    }
   };
 
   data: any = {

@@ -10,7 +10,17 @@ import { Settings } from 'ngx-json-table';
 export class BasicExampleDataComponent {
 
   settings: Settings = {
+    sortable: true,
+    sortDirection: 'asc',
     expandAll: true,
+    options: {
+      add: true,
+      edit: {
+        key: true,
+        value: true
+      },
+      delete: true,
+    }
   };
 
   data: any = {

@@ -7,7 +7,14 @@ export type Settings = {
     headerText?: string;
     width?: string;
   };
-  editable?: boolean;
+  options?: {
+    add?: boolean,
+    edit?: {
+      key?: boolean,
+      value?: boolean
+    },
+    delete?: boolean
+  };
   sortable?: boolean;
   sortDirection?: SortType;
   expandAll?: boolean;

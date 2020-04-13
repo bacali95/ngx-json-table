@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
 import { JsonTreeEvent } from '../../../lib/helpers';
-import { Icons } from '../../../lib/settings';
+import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
   selector: '[ngx-json-table-key]',
@@ -11,6 +11,7 @@ import { Icons } from '../../../lib/settings';
 export class NgxJsonTableKeyComponent {
 
   @Input() item: JsonTreeNode;
+  @Input() settings: Settings;
   @Input() icons: Icons;
   @Output() onChange = new EventEmitter<JsonTreeEvent>();
 

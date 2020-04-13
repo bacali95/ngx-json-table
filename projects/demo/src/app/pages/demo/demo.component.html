@@ -30,8 +30,14 @@
     <code highlight class="typescript">{{ snippets.directive }}</code>
   </pre>
   <p>
-    Now, we need to configure the table and add it into the template. There is <strong>no required</strong> setting for the component to start working (<a [routerLink]="['/documentation']">Settings documentation</a>):
-    So let's put the ngx-json-table component inside of the template:
+    Now, we need to configure the table and add it into the template. There is <strong>no required</strong> setting for the component to start working, but we will use the full feature settings object for the demo.
+    Let's register <i>settings</i> property inside of the component where we want to have the table (<a [routerLink]="['/documentation']">Settings documentation</a>):
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.settings }}</code>
+  </pre>
+  <p>
+    Finally let's put the ngx-json-table component inside of the template:
   </p>
   <pre>
     <code highlight class="typescript">{{ snippets.template }}</code>

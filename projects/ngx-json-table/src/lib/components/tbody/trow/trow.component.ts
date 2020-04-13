@@ -20,7 +20,7 @@ export class NgxJsonTableTrowComponent {
 
   @HostListener('mouseenter')
   onMouseEnterListener() {
-    this.settings.editable && (this.item.showEditPanel = true);
+    this.item.showEditPanel = true;
   }
 
   @HostListener('mouseleave')

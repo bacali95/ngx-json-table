@@ -15,14 +15,12 @@ export class NgxJsonTableTheadComponent {
   @Input() icons: Icons;
   @Output() onChange = new EventEmitter<JsonTreeEvent>();
   @Output() onSortDirectionChange = new EventEmitter<SortType>();
-  sorted: boolean = false;
 
   constructor() {
   }
 
   toggleSortDirection() {
-    this.sorted && (this.settings.sortDirection = this.settings.sortDirection === 'asc' ? 'desc' : 'asc');
-    this.sorted = true;
+    this.settings.sortDirection = this.settings.sortDirection === 'asc' ? 'desc' : 'asc';
     this.onSortDirectionChange.emit(this.settings.sortDirection);
   }
 

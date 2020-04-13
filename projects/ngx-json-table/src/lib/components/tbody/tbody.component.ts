@@ -38,6 +38,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   rebuildJsonTree() {
     this.jsonTree.children = [];
     this.buildJsonTree(this.jsonTree, this.data);
+    this.settings.sortDirection && this.sortJsonTree(this.jsonTree, this.settings.sortDirection);
   }
 
   rebuildTable() {

@@ -3,13 +3,13 @@
     {{settings.key.headerText}}
     <span class="float-right" *ngIf="settings.sortable"
           (click)="toggleSortDirection()" style="cursor: pointer; padding-left: 5px">
-      <span *ngIf="!sorted" [innerHTML]="icons.notSorted.html | sanitizeHtml">
+      <span *ngIf="!settings.sortDirection" [innerHTML]="icons.notSorted.html | sanitizeHtml">
       </span>
-      <span *ngIf="sorted"
+      <span *ngIf="settings.sortDirection"
             [innerHTML]="icons[settings.sortDirection === 'asc' ? 'sortedAsc' : 'sortedDesc'].html | sanitizeHtml">
       </span>
     </span>
-    <span *ngIf="settings.editable" class="float-right">
+    <span *ngIf="settings.options.add" class="float-right">
       <span (click)="toggleDropdownMenu(dropdown)"
             [innerHTML]="icons.addChild.html | sanitizeHtml"></span>
       <span class="dropdown-content" #dropdown>

@@ -22,9 +22,16 @@ export class NgxJsonTableComponent implements OnChanges {
       headerText: 'Value',
       width: '60%'
     },
-    editable: true,
+    options: {
+      add: false,
+      edit: {
+        key: false,
+        value: false
+      },
+      delete: false
+    },
     sortable: false,
-    sortDirection: 'asc',
+    sortDirection: undefined,
     expandAll: false,
   };
 

@@ -16,14 +16,14 @@
       <th>Description</th>
     </tr>
     <tr>
+      <td>[data]</td>
+      <td><span class="highlight">Object</span></td>
+      <td>Table data, any valid JSON object.</td>
+    </tr>
+    <tr>
       <td>[settings]</td>
       <td><span class="highlight">Object</span></td>
       <td>Table component configuration object, properties described below</td>
-    </tr>
-    <tr>
-      <td>[data]</td>
-      <td><span class="highlight">Object</span>|<span class="highlight">DataSource</span></td>
-      <td>Table data, any valid JSON object.</td>
     </tr>
   </table>
 
@@ -88,11 +88,51 @@
       </td>
     </tr>
     <tr>
-      <td>editable</td>
-      <td><span class="highlight">boolean</span></td>
-      <td>true</td>
+      <td>options</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
       <td>
-        Whether the table is editable or not.
+        Whether to enable or disable the add/edit/delete options.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">options</span>.add</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Whether to enable or disable the add option.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">options</span>.edit</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Whether to enable or disable the edit option.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">options.edit</span>.key</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Whether to enable or disable the edit the key.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">options.edit</span>.value</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Whether to enable or disable the edit the value.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">options</span>.delete</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Whether to enable or disable the delete option.
       </td>
     </tr>
     <tr>
@@ -106,7 +146,7 @@
     <tr>
       <td>sortDirection</td>
       <td><span class="highlight">'asc'</span> | <span class="highlight">'desc'</span></td>
-      <td>n/a</td>
+      <td>undefined</td>
       <td>
         Sort table by the object keys column with this direction by default.<br>
         Applied only when <span class="highlight">sortable</span> = true.

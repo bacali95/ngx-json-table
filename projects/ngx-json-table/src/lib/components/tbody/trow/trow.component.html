@@ -1,10 +1,12 @@
 <td ngx-json-table-key [style]="{width: settings.key.width}"
     [item]="item"
+    [settings]="settings"
     [icons]="icons"
     (onChange)="onChange.emit($event)">
 </td>
 <td ngx-json-table-value
     [style]="{width: settings.value.width}"
     [item]="item" class="row-value"
+    [settings]="settings"
     (onChange)="onChange.emit($event)">
 </td>

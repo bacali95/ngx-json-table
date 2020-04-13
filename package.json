@@ -1,6 +1,6 @@
 {
   "name": "ngx-json-table",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Show and edit a JSON object using HTML table.",
   "repository": {
     "url": "https://github.com/bacali95/ngx-json-table.git",

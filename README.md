@@ -31,9 +31,8 @@ import { Ng2JsonTableModule } from 'ngx-json-table';
 
 Then register it by adding to the list of directives of your module:
 
-```
+```typescript
 // ...
-
 @NgModule({
   imports: [
     // ...
@@ -50,9 +49,8 @@ Then register it by adding to the list of directives of your module:
 Now, we need to configure the table and add it into the template. There is <strong>no required</strong> setting for the component to start working ([Settings documentation](https://bacali95.github.io/ngx-json-table/#/documentation)):
 So let's put the ngx-json-table component inside of the template:
 
-```
+```typescript
 // ...
-
 @Component({
   template: `
     <ngx-json-table></ngx-json-table>
@@ -63,7 +61,7 @@ So let's put the ngx-json-table component inside of the template:
 
 Still it seems like something is missing... Right, there is no data in the table by default. To add some, let's create any valid JSON object.
 
-```
+```typescript
 data: any = {
   product: 'NGX JSON Table',
   version: 1.0,
@@ -97,9 +95,8 @@ data: any = {
 
 And pass the data to the table:
 
-```
+```typescript
 // ...
-
 @Component({
   template: `
     <ngx-json-table [data]="data"></ngx-json-table>

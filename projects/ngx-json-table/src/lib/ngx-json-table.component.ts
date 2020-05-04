@@ -33,6 +33,7 @@ export class NgxJsonTableComponent implements OnChanges {
     sortable: false,
     sortDirection: undefined,
     expandAll: false,
+    loadFromFile: false
   };
 
   constructor() {

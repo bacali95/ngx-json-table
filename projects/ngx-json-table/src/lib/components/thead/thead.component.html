@@ -19,5 +19,13 @@
       </span>
     </span>
   </th>
-  <th [ngStyle]="{width: settings.value.width}">{{settings.value.headerText}}</th>
+  <th [ngStyle]="{width: settings.value.width}">
+    {{settings.value.headerText}}
+    <label class="float-right" for="upload" style="margin-bottom: 0">
+      <span *ngIf="settings.loadFromFile"
+          [innerHTML]="icons.uploadFile.html | sanitizeHtml"></span>
+      <input type="file" id="upload" style="display:none"
+             (change)="loadFile($event)" accept="application/json">
+    </label>
+  </th>
 </tr>

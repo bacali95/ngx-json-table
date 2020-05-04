@@ -13,6 +13,7 @@ export class BasicExampleDataComponent {
     sortable: true,
     sortDirection: 'asc',
     expandAll: true,
+    loadFromFile: true,
     options: {
       add: true,
       edit: {

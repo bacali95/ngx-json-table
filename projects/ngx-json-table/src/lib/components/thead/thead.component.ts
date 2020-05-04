@@ -14,6 +14,7 @@ export class NgxJsonTableTheadComponent {
   @Input() settings: Settings;
   @Input() icons: Icons;
   @Output() onChange = new EventEmitter<JsonTreeEvent>();
+  @Output() fileLoaded = new EventEmitter<any>();
   @Output() onSortDirectionChange = new EventEmitter<SortType>();
 
   constructor() {
@@ -36,5 +37,17 @@ export class NgxJsonTableTheadComponent {
     node.isNew = true;
     this.root.children.splice(0, 0, node);
     this.onChange.emit('add');
+  }
+
+  loadFile(event) {
+    const [file] = event.target.files;
+    if (file && file.type === 'application/json') {
+      const fileReader = new FileReader();
+      fileReader.readAsText(file);
+      fileReader.onload = () => {
+        const object = JSON.parse(fileReader.result as string);
+        this.fileLoaded.emit(object);
+      };
+    }
   }
 }

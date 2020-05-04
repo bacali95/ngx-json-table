@@ -3,6 +3,7 @@
          [settings]="defaultSettings"
          [icons]="defaultSettings.icons"
          (onChange)="tbody.somethingChanged($event)"
+         (fileLoaded)="data = $event"
          (onSortDirectionChange)="tbody.toggleSortDirection($event)">
   </thead>
   <tbody ngx-json-table-tbody #tbody

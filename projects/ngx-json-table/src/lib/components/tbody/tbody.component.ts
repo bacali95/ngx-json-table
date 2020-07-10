@@ -54,7 +54,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
       const node = new JsonTreeNode(key, typeof value !== 'object' ? value : '',
         typeof value, level, false, root, [], this.settings.expandAll);
       root.addChild(node);
-      typeof value === 'object' && this.buildJsonTree(node, value, level + 1);
+      value !== null && typeof value === 'object' && this.buildJsonTree(node, value, level + 1);
     }
   }
 

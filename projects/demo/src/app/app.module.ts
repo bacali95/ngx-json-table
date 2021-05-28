@@ -18,7 +18,7 @@ import { ScrollPositionDirective } from './theme/directives/scrollPosition.direc
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' }),
     NgxJsonTableModule,
     PagesModule,
   ],

@@ -13,12 +13,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "tslib": "^2.0.0"
   },
   "peerDependencies": {
     "@angular/common": "^9.1.0",
     "@angular/core": "^9.1.0",
-    "@angular/forms": "^9.1.0",
-    "tslib": "^1.11.1"
+    "@angular/forms": "^9.1.0"
   }
 }

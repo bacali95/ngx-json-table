@@ -9,8 +9,13 @@
 
 # dependencies
 /node_modules
-package-lock.json
-yarn.lock
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # profiling files
 chrome-profiler-events.json
@@ -46,3 +51,30 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Angular specific
+.angular/
+.nx/
+.angular/cache/
+.angular/local-storage/
+
+# Browser webdriver
+/web-drivers/
+/web-drivers-manager/
+
+# Environment files
+/src/environments/*.local.ts
+
+# ESLint
+.eslintcache
+
+# npm
+.npm/
+.npmrc
+
+# Testing
+/cypress/screenshots/
+/cypress/videos/
+/cypress/downloads/
+/cypress/fixtures/
+

@@ -7,13 +7,12 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -28,8 +27,11 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Build library
+      - name: Build Library
         run: yarn build:lib
 
-      - name: Build demo
+      - name: Build Demo App
         run: yarn build:demo
+
+      - name: Test
+        run: yarn test --no-watch --browsers=ChromeHeadless

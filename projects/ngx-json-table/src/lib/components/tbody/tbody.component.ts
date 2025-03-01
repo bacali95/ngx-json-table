@@ -9,7 +9,7 @@ import { NgxJsonTableTheadComponent } from '../thead/thead.component';
   templateUrl: './tbody.component.html',
   styleUrls: ['./tbody.component.scss'],
 })
-export class NgxJsonTableTbodyComponent implements OnChanges {
+export class TbodyComponent implements OnChanges {
   @Input() data: JsonValue = {};
   @Input() head: NgxJsonTableTheadComponent;
   @Input() settings: Settings;
@@ -28,7 +28,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
       this.currentData = this.data;
       this.rebuildJsonTree();
       this.rebuildTable();
-      !data.isFirstChange() && this.dataChange.next(this.data);
+      !data.isFirstChange() && this.dataChange.next(this.currentData);
       this.head.root = this.jsonTree;
     }
   }

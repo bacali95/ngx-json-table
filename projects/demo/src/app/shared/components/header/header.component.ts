@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'header-component',
+  selector: 'app-header',
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {

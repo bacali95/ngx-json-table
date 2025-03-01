@@ -1,3 +1,5 @@
+import { JsonValue } from './helpers';
+
 export type JsonValueType =
   | 'bigint'
   | 'number'
@@ -12,12 +14,12 @@ export class JsonTreeNode {
   id: string;
   key: string;
   prevKey: string;
-  value: any;
-  prevValue: any;
+  value: JsonValue;
+  prevValue: JsonValue;
   level: number;
   type: JsonValueType;
   isArray: boolean;
-  parent: JsonTreeNode;
+  parent: JsonTreeNode | null;
   children: JsonTreeNode[];
   showChildren: boolean;
   edit: boolean = false;
@@ -27,11 +29,11 @@ export class JsonTreeNode {
 
   constructor(
     key: string,
-    value: any,
+    value: JsonValue,
     type: JsonValueType,
     level?: number,
     isArray?: boolean,
-    parent?: JsonTreeNode,
+    parent?: JsonTreeNode | null,
     children?: JsonTreeNode[],
     showChildren?: boolean
   ) {
@@ -41,7 +43,7 @@ export class JsonTreeNode {
     this.type = type;
     this.level = level ?? 0;
     this.isArray = isArray ?? false;
-    this.parent = parent;
+    this.parent = parent ?? null;
     this.children = children ?? [];
     this.showChildren = showChildren ?? false;
   }

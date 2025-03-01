@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Settings } from 'ngx-json-table';
+import { JsonValue, Settings } from 'ngx-json-table';
 
 @Component({
-  selector: 'basic-example-data',
-  template: ` <ngx-json-table [data]="data" [settings]="settings"></ngx-json-table> `,
+  selector: 'app-basic-example-data',
+  template: ` <lib-json-table [data]="data" [settings]="settings"></lib-json-table> `,
 })
 export class BasicExampleDataComponent {
   settings: Settings = {
@@ -21,7 +21,7 @@ export class BasicExampleDataComponent {
     },
   };
 
-  data: any = {
+  data: JsonValue = {
     product: 'NGX JSON Table',
     version: 1.0,
     releaseDate: '2014-06-25T00:00:00.000Z',

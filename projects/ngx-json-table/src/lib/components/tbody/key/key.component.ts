@@ -1,6 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
-import { JsonTreeEvent } from '../../../lib/helpers';
 import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
@@ -8,11 +7,13 @@ import { Icons, Settings } from '../../../lib/settings';
   templateUrl: './key.component.html',
   styleUrls: ['./key.component.scss'],
 })
-export class NgxJsonTableKeyComponent {
+export class KeyComponent {
+  @Input() value: unknown;
+  @Output() valueChange = new EventEmitter<unknown>();
+
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
 
   constructor() {}
 
@@ -59,5 +60,9 @@ export class NgxJsonTableKeyComponent {
   toggleDropdownMenu(dropdown: HTMLSpanElement) {
     const value = dropdown.style.display;
     dropdown.style.display = value === 'none' || value === '' ? 'block' : 'none';
+  }
+
+  public onValueChange(value: unknown): void {
+    this.valueChange.emit(value);
   }
 }

@@ -9,33 +9,32 @@ import { cloneDeep } from 'lodash';
  * object as first argument, like this:
  *   deepExtend({}, yourObj_1, [yourObj_N]);
  */
-// tslint:disable-next-line:only-arrow-functions
-export const deepExtend = function (...objects: Array<any>): any {
-  if (arguments.length < 1 || typeof arguments[0] !== 'object') {
+export const deepExtend = function <T extends object>(...objects: T[]): T | false {
+  if (objects.length < 1 || typeof objects[0] !== 'object') {
     return false;
   }
 
-  if (arguments.length < 2) {
-    return arguments[0];
+  if (objects.length < 2) {
+    return objects[0];
   }
 
-  const target = arguments[0];
+  const target = objects[0] as Record<string, unknown>;
 
-  // convert arguments to array and cut off target object
-  const args = Array.prototype.slice.call(arguments, 1);
+  // Cut off target object and process remaining objects
+  const sources = objects.slice(1);
 
-  let val;
-  let src;
+  let val: unknown;
+  let src: unknown;
 
-  args.forEach((obj: any) => {
+  sources.forEach(obj => {
     // skip argument if it is array or isn't object
     if (typeof obj !== 'object' || Array.isArray(obj)) {
       return;
     }
 
-    Object.keys(obj).forEach(key => {
+    Object.keys(obj as object).forEach(key => {
       src = target[key]; // source value
-      val = obj[key]; // new value
+      val = (obj as Record<string, unknown>)[key]; // new value
 
       // recursion prevention
       if (val === target) {
@@ -56,18 +55,18 @@ export const deepExtend = function (...objects: Array<any>): any {
 
         // overwrite by new value if source isn't object or array
       } else if (typeof src !== 'object' || src === null || Array.isArray(src)) {
-        target[key] = deepExtend({}, val);
+        target[key] = deepExtend({}, val as object) as unknown;
         return;
 
         // source value and new value is objects both, extending...
       } else {
-        target[key] = deepExtend(src, val);
+        target[key] = deepExtend(src as object, val as object) as unknown;
         return;
       }
     });
   });
 
-  return target;
+  return target as T;
 };
 
 export type JsonTreeEvent = 'add' | 'edit' | 'delete' | 'sort' | 'clean';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'demo',
+  selector: 'app-demo',
   templateUrl: './demo.component.html',
 })
 export class DemoComponent implements OnInit {

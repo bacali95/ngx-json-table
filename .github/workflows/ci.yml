@@ -33,5 +33,10 @@ jobs:
       - name: Build Demo App
         run: yarn build:demo
 
-      - name: Test
-        run: yarn test --no-watch --browsers=ChromeHeadless
+      - name: Test with coverage
+        run: yarn test --no-watch --browsers=ChromeHeadlessCI --code-coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

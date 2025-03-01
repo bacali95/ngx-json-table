@@ -20,7 +20,7 @@
     "build:demo": "ng build demo --configuration production",
     "build:lib": "ng build ngx-json-table --configuration production",
     "build:ci": "npm run build:demo && npm run build:lib",
-    "docs:gh-pages": "npm run build:demo -- --base-href '/ngx-json-table/' && ngh --dir ./dist/demo",
+    "deploy:demo": "npm run build:demo -- --base-href '/ngx-json-table/' && npx angular-cli-ghpages --dir=./dist/demo",
     "test": "ng test",
     "release": "npm run build:lib && npm run publish",
     "publish": "npm publish --access=public dist/ngx-json-table",

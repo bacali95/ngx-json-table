@@ -1,0 +1,36 @@
+name: Deploy Demo App
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+      
+      - name: Install dependencies
+        run: yarn install
+        
+      - name: Build Demo
+        run: yarn build:demo -- --base-href '/ngx-json-table/'
+        
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/demo
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          clean: true 

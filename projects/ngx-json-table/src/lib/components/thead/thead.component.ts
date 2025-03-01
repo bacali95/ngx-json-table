@@ -8,7 +8,7 @@ import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
   templateUrl: './thead.component.html',
   styleUrls: ['./thead.component.scss'],
 })
-export class NgxJsonTableTheadComponent {
+export class TheadComponent {
   @Input() root: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;

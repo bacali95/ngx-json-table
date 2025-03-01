@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxJsonTableComponent } from './ngx-json-table.component';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
-import { NgxJsonTableTbodyComponent } from './components/tbody/tbody.component';
-import { NgxJsonTableTrowComponent } from './components/tbody/trow/trow.component';
-import { NgxJsonTableKeyComponent } from './components/tbody/key/key.component';
-import { NgxJsonTableValueComponent } from './components/tbody/value/value.component';
-import { NgxJsonTableTheadComponent } from './components/thead/thead.component';
+import { TbodyComponent } from './components/tbody/tbody.component';
+import { TrowComponent } from './components/tbody/trow/trow.component';
+import { KeyComponent } from './components/tbody/key/key.component';
+import { ValueComponent } from './components/tbody/value/value.component';
+import { TheadComponent } from './components/thead/thead.component';
 
 const COMPONENTS = [
-  NgxJsonTableTbodyComponent,
-  NgxJsonTableTrowComponent,
-  NgxJsonTableKeyComponent,
-  NgxJsonTableValueComponent,
-  NgxJsonTableTheadComponent,
+  TbodyComponent,
+  TrowComponent,
+  KeyComponent,
+  ValueComponent,
+  TheadComponent,
   NgxJsonTableComponent,
   SanitizeHtmlPipe,
 ];

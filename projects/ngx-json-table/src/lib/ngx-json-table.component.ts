@@ -43,7 +43,10 @@ export class NgxJsonTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.settings) {
       this.defaultSettings.icons = iconsPackages[this.settings?.iconPackage ?? 'basic'];
-      this.defaultSettings = deepExtend({}, this.defaultSettings, this.settings);
+      const extendedSettings = deepExtend({}, this.defaultSettings, this.settings);
+      if (extendedSettings !== false) {
+        this.defaultSettings = extendedSettings;
+      }
       this.buildIcons(this.defaultSettings.icons);
     }
   }

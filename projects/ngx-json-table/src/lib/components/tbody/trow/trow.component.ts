@@ -8,7 +8,7 @@ import { Icons, Settings } from '../../../lib/settings';
   templateUrl: './trow.component.html',
   styleUrls: ['./trow.component.scss'],
 })
-export class NgxJsonTableTrowComponent {
+export class TrowComponent {
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;

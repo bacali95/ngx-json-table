@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { JsonTreeNode } from '../../lib/json-tree-node';
 import { Icons, Settings, SortType } from '../../lib/settings';
 import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
-import { NgxJsonTableTheadComponent } from '../thead/thead.component';
+import { TheadComponent } from '../thead/thead.component';
 
 @Component({
   selector: 'lib-json-table-tbody',
@@ -11,7 +11,7 @@ import { NgxJsonTableTheadComponent } from '../thead/thead.component';
 })
 export class TbodyComponent implements OnChanges {
   @Input() data: JsonValue = {};
-  @Input() head: NgxJsonTableTheadComponent;
+  @Input() head: TheadComponent;
   @Input() settings: Settings;
   @Input() icons: Icons;
   @Output() dataChange = new EventEmitter<JsonValue>();

@@ -1,3 +1,4 @@
+// @ts-ignore - Protractor is deprecated but still required for e2e tests
 import { browser, by, element } from 'protractor';
 
 export class AppPage {

@@ -8,7 +8,7 @@ import { Settings } from '../../../lib/settings';
   templateUrl: './value.component.html',
   styleUrls: ['./value.component.scss'],
 })
-export class NgxJsonTableValueComponent {
+export class ValueComponent {
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Output() valueChange = new EventEmitter<JsonTreeEvent>();

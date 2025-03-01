@@ -68,14 +68,3 @@ export const deepExtend = function <T extends object>(...objects: T[]): T | fals
 
   return target as T;
 };
-
-export type JsonTreeEvent = 'add' | 'edit' | 'delete' | 'sort' | 'clean';
-
-export declare type JsonPrimitive = string | number | boolean | null;
-export declare type JsonValue = JsonPrimitive | JsonArray | JsonObject | undefined;
-
-export interface JsonArray extends Array<JsonValue> {}
-
-export interface JsonObject {
-  [key: string]: JsonValue;
-}

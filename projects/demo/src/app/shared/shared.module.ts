@@ -8,15 +8,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { BasicExampleDataComponent } from './components/basic-example/basic-example-data.component';
 import { BasicExampleComponent } from './components/basic-example/basic-example.component';
 
-import { HighlightCodeDirective } from './directives/highlight.directive';
-
 const SHARED_COMPONENTS = [HeaderComponent, BasicExampleComponent, BasicExampleDataComponent];
-
-const SHARED_DIRECTIVES = [HighlightCodeDirective];
 
 @NgModule({
   imports: [RouterModule, CommonModule, NgxJsonTableModule],
-  declarations: [...SHARED_COMPONENTS, ...SHARED_DIRECTIVES],
-  exports: [...SHARED_COMPONENTS, ...SHARED_DIRECTIVES],
+  declarations: [...SHARED_COMPONENTS],
+  exports: [...SHARED_COMPONENTS],
 })
 export class SharedModule {}

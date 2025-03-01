@@ -3,12 +3,12 @@
  */
 
 // Core exports
+export * from './lib/lib/types';
 export * from './lib/lib/settings';
-export * from './lib/lib/helpers';
 export * from './lib/ngx-json-table.component';
 export * from './lib/ngx-json-table.module';
 
-// Component exports
+// // Component exports
 export * from './lib/components/thead/thead.component';
 export * from './lib/components/tbody/tbody.component';
 export * from './lib/components/tbody/trow/trow.component';

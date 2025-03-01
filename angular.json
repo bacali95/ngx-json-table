@@ -63,7 +63,7 @@
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/highlight.js/styles/base16/dracula.css",
+              "node_modules/highlight.js/styles/github-dark.css",
               "projects/demo/src/app/theme/theme.scss"
             ],
             "scripts": [

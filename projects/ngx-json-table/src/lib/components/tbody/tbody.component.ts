@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { JsonTreeNode } from '../../lib/json-tree-node';
 import { Icons, Settings, SortType } from '../../lib/settings';
-import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
+import { JsonTreeEvent, JsonValue } from '../../lib/types';
 import { TheadComponent } from '../thead/thead.component';
 
 @Component({

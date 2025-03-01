@@ -1,4 +1,4 @@
-import { JsonValue } from './helpers';
+import { JsonValue } from './types';
 
 export type JsonValueType =
   | 'bigint'

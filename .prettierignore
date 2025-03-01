@@ -38,4 +38,7 @@ testem.log
 
 # System files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Snippets
+projects/demo/src/assets/snippets/*.md

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Icons, iconsPackages, Settings } from './lib/settings';
-import { deepExtend, JsonValue } from './lib/helpers';
+import { deepExtend } from './lib/helpers';
+import { JsonValue } from './lib/types';
 
 @Component({
   selector: 'ngx-json-table',

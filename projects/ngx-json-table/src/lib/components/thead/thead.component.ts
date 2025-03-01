@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icons, Settings, SortType } from '../../lib/settings';
 import { JsonTreeNode } from '../../lib/json-tree-node';
-import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
+import { JsonTreeEvent, JsonValue } from '../../lib/types';
 
 @Component({
   selector: 'ngx-json-table-thead',

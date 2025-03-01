@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
-import { JsonTreeEvent } from '../../../lib/helpers';
+import { JsonTreeEvent } from '../../../lib/types';
 import { Settings } from '../../../lib/settings';
 
 @Component({

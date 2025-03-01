@@ -3,7 +3,7 @@ import { JsonTreeNode } from '../../../lib/json-tree-node';
 import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
-  selector: 'ngx-json-table-key',
+  selector: '[ngx-json-table-key]',
   templateUrl: './key.component.html',
   styleUrls: ['./key.component.scss'],
 })

@@ -4,7 +4,7 @@ import { JsonTreeEvent } from '../../../lib/types';
 import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
-  selector: 'ngx-json-table-trow',
+  selector: '[ngx-json-table-trow]',
   templateUrl: './trow.component.html',
   styleUrls: ['./trow.component.scss'],
 })

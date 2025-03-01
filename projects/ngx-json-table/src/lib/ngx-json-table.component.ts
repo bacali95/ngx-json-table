@@ -4,7 +4,7 @@ import { deepExtend } from './lib/helpers';
 import { JsonValue } from './lib/types';
 
 @Component({
-  selector: 'ngx-json-table',
+  selector: '[ngx-json-table]',
   templateUrl: './ngx-json-table.component.html',
   styleUrls: ['./ngx-json-table.component.scss'],
 })

@@ -4,7 +4,7 @@ import { JsonTreeNode } from '../../lib/json-tree-node';
 import { JsonTreeEvent, JsonValue } from '../../lib/types';
 
 @Component({
-  selector: 'ngx-json-table-thead',
+  selector: '[ngx-json-table-thead]',
   templateUrl: './thead.component.html',
   styleUrls: ['./thead.component.scss'],
 })

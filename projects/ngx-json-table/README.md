@@ -55,7 +55,7 @@ So let's put the ngx-json-table component inside of the template:
 
 @Component({
   template: `
-    <ngx-json-table></ngx-json-table>
+    <table ngx-json-table></table>
   `
 })
 // ...
@@ -102,7 +102,7 @@ And pass the data to the table:
 
 @Component({
   template: `
-    <ngx-json-table [data]="data"></ngx-json-table>
+    <table ngx-json-table [data]="data"></table>
   `
 })
 // ...

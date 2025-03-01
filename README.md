@@ -3,118 +3,238 @@
 
 # Angular JSON Table
 
-ngx-json-table component made to represent JSON object as a simple HTML table.
+ngx-json-table is a flexible Angular component designed to display and edit JSON objects as HTML tables. The library provides powerful features for data manipulation, including inline adding, editing, and deleting of JSON properties and values.
 
-### Demo
+## Demo
 
 <a target="_blank" href="https://bacali95.github.io/ngx-json-table/">Live Demo</a>
 
+## Features
+
+- Display JSON objects and arrays in a structured HTML table
+- Inline add/edit/delete capabilities for both keys and values
+- Sorting functionality with customizable direction
+- Expandable/collapsible nested objects and arrays
+- JSON file import functionality
+- Multiple icon packages support (Basic, Font Awesome, Material Design)
+- Fully customizable table styling
+- Two-way data binding support
+- Type-safe with TypeScript
+
 ## Installation
 
-The library is available as npm package, so all you need to do is to run the following command:
+Install the library using npm or yarn:
 
-```
+```bash
+# Using npm
 npm install --save ngx-json-table
+
+# Using yarn
+yarn add ngx-json-table
 ```
 
-This command will create a record in your `package.json` file and install the package into the npm modules folder.
+## Basic Usage
 
-## Minimal Setup Example
-
-First thing you need to do is to import the ngx-json-table directives into your component.
-
-```
-
-import { Ng2JsonTableModule } from 'ngx-json-table';
-
-```
-
-Then register it by adding to the list of directives of your module:
+1. Import the NgxJsonTableModule in your application module:
 
 ```typescript
-// ...
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxJsonTableModule } from 'ngx-json-table';
+import { AppComponent } from './app.component';
+
 @NgModule({
-  imports: [
-    // ...
-
-    Ng2JsonTableModule,
-
-    // ...
-  ],
-  declarations: [ ... ]
+  declarations: [AppComponent],
+  imports: [BrowserModule, NgxJsonTableModule],
+  bootstrap: [AppComponent],
 })
-// ...
+export class AppModule {}
 ```
 
-Now, we need to configure the table and add it into the template. There is <strong>no required</strong> setting for the component to start working ([Settings documentation](https://bacali95.github.io/ngx-json-table/#/documentation)):
-So let's put the ngx-json-table component inside of the template:
+2. Use the component in your template:
+
+```html
+<!-- Basic usage with default settings -->
+<table ngx-json-table [data]="yourJsonData"></table>
+
+<!-- With custom settings -->
+<table ngx-json-table [data]="yourJsonData" [settings]="tableSettings"></table>
+```
+
+3. Define your data and settings in your component:
 
 ```typescript
-// ...
+import { Component } from '@angular/core';
+import { Settings, JsonValue } from 'ngx-json-table';
+
 @Component({
-  template: `
-    <ngx-json-table></ngx-json-table>
-  `
+  selector: 'app-root',
+  templateUrl: './app.component.html',
 })
-// ...
+export class AppComponent {
+  // Your JSON data
+  yourJsonData: JsonValue = {
+    product: 'NGX JSON Table',
+    version: 1.0,
+    features: ['Sorting', 'Editing', 'Nested objects'],
+    configuration: {
+      sortable: true,
+      editable: true,
+    },
+  };
+
+  // Optional settings
+  tableSettings: Settings = {
+    sortable: true,
+    sortDirection: 'asc',
+    expandAll: true,
+    loadFromFile: true,
+    options: {
+      add: true,
+      edit: {
+        key: true,
+        value: true,
+      },
+      delete: true,
+    },
+  };
+}
 ```
 
-Still it seems like something is missing... Right, there is no data in the table by default. To add some, let's create any valid JSON object.
+## Configuration Options
+
+The `Settings` interface provides various options to customize your table:
 
 ```typescript
-data: any = {
-  product: 'NGX JSON Table',
-  version: 1.0,
-  releaseDate: '2014-06-25T00:00:00.000Z',
-  demo: true,
-  person: {
-    id: 12345,
-    name: 'John Doe',
-    phones: {
-      home: '800-123-4567',
-      mobile: '877-123-1234',
-    },
-    email: ['jd@example.com', 'jd@example.org'],
-    dateOfBirth: '1980-01-02T00:00:00.000Z',
-    registered: true,
-    emergencyContacts: [
-      {
-        name: 'Jane Doe',
-        phone: '888-555-1212',
-        relationship: 'spouse',
-      },
-      {
-        name: 'Justin Doe',
-        phone: '877-123-1212',
-        relationship: 'parent',
-      },
-    ],
-  },
+export type Settings = {
+  // Customize the key column
+  key?: {
+    headerText?: string; // Default: "Key"
+    width?: string; // Default: "40%"
+  };
+
+  // Customize the value column
+  value?: {
+    headerText?: string; // Default: "Value"
+    width?: string; // Default: "60%"
+  };
+
+  // Enable/disable operations
+  options?: {
+    add?: boolean; // Enable adding new properties
+    edit?: {
+      key?: boolean; // Enable editing keys
+      value?: boolean; // Enable editing values
+    };
+    delete?: boolean; // Enable deleting properties
+  };
+
+  sortable?: boolean; // Enable sorting
+  sortDirection?: 'asc' | 'desc'; // Default sort direction
+  expandAll?: boolean; // Expand all nested objects by default
+  loadFromFile?: boolean; // Show button to load JSON from file
+
+  // Icon package to use
+  iconPackage?: 'basic' | 'font-awesome' | 'material-design';
 };
 ```
 
-And pass the data to the table:
+## Events
 
-```typescript
-// ...
-@Component({
-  template: `
-    <ngx-json-table [data]="data"></ngx-json-table>
-  `
-})
-// ...
+The component provides events to react to data changes:
+
+```html
+<table ngx-json-table [data]="data" (dataChange)="onDataChange($event)"></table>
 ```
 
-Now you have some data in the table.
+```typescript
+onDataChange(newData: JsonValue) {
+  console.log('Data changed:', newData);
+  // Update your application state or perform other actions
+}
+```
 
-## Further Documentation
+## Icon Packages
 
-Installation, customization and other useful articles: https://bacali95.github.io/ngx-json-table/
+ngx-json-table supports three icon packages out of the box:
 
-## Features
+1. **Basic**: Default package using HTML entities (no external dependencies)
+2. **Font Awesome**: Requires Font Awesome to be installed
+3. **Material Design**: Requires Material Icons to be installed
 
-- Inline Add/Edit/Delete
-- Sorting
+To use a specific icon package:
+
+```typescript
+tableSettings: Settings = {
+  iconPackage: 'material-design',
+  // other settings...
+};
+```
+
+## Complete Example
+
+Here's a complete example with all features enabled:
+
+```typescript
+import { Component } from '@angular/core';
+import { Settings, JsonValue } from 'ngx-json-table';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <table
+      ngx-json-table
+      [data]="data"
+      [settings]="settings"
+      (dataChange)="onDataChange($event)"></table>
+  `,
+})
+export class ExampleComponent {
+  settings: Settings = {
+    key: {
+      headerText: 'Property',
+      width: '30%',
+    },
+    value: {
+      headerText: 'Data',
+      width: '70%',
+    },
+    sortable: true,
+    sortDirection: 'asc',
+    expandAll: true,
+    loadFromFile: true,
+    iconPackage: 'font-awesome',
+    options: {
+      add: true,
+      edit: {
+        key: true,
+        value: true,
+      },
+      delete: true,
+    },
+  };
+
+  data: JsonValue = {
+    // Your JSON data here...
+  };
+
+  onDataChange(newData: JsonValue) {
+    console.log('Data updated:', newData);
+    this.data = newData;
+  }
+}
+```
+
+## Browser Support
+
+ngx-json-table supports all major browsers and platforms, including:
+
+- Chrome, Firefox, Edge, Safari, Opera
+- Mobile browsers (iOS, Android)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 

@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml/badge.svg)](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml)
+[![CI Status](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ngx-json-table.svg)](https://badge.fury.io/js/ngx-json-table)
 
 # Angular JSON Table 

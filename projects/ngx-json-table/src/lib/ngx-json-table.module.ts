@@ -17,17 +17,12 @@ const COMPONENTS = [
   NgxJsonTableValueComponent,
   NgxJsonTableTheadComponent,
   NgxJsonTableComponent,
-  SanitizeHtmlPipe
+  SanitizeHtmlPipe,
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
 })
-export class NgxJsonTableModule {
-}
+export class NgxJsonTableModule {}

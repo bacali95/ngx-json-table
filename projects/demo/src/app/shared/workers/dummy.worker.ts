@@ -5,4 +5,4 @@
 
 addEventListener('message', ({ data }) => {
   postMessage({ response: 'Received: ' + data });
-}); 
+});

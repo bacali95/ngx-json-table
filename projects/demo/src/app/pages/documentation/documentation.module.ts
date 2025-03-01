@@ -9,13 +9,7 @@ import { routes } from './documentation.routes';
 import { DocumentationComponent } from './documentation.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule,
-  ],
-  declarations: [
-    DocumentationComponent,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  declarations: [DocumentationComponent],
 })
-export class DocumentationModule { }
+export class DocumentationModule {}

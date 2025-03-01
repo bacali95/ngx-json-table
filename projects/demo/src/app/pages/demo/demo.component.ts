@@ -36,12 +36,11 @@ export class DemoComponent implements OnInit {
     ];
 
     snippetNames.forEach(name => {
-      this.http.get(`assets/snippets/${name}.md`, { responseType: 'text' })
-        .subscribe(content => {
-          // Convert kebab-case to camelCase for the keys
-          const key = name.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-          this.snippets[key] = content;
-        });
+      this.http.get(`assets/snippets/${name}.md`, { responseType: 'text' }).subscribe(content => {
+        // Convert kebab-case to camelCase for the keys
+        const key = name.replace(/-([a-z])/g, g => g[1].toUpperCase());
+        this.snippets[key] = content;
+      });
     });
   }
 }

@@ -11,17 +11,10 @@
     "importHelpers": true,
     "target": "es2022",
     "useDefineForClassFields": false,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2022",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2022", "dom"],
     "paths": {
-      "ngx-json-table": [
-        "projects/ngx-json-table/src/public-api.ts"
-      ]
+      "ngx-json-table": ["projects/ngx-json-table/src/public-api.ts"]
     }
   }
 }

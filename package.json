@@ -26,6 +26,9 @@
     "publish": "npm publish --access=public dist/ngx-json-table",
     "changelog": "standard-changelog -p angular",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "format": "prettier --write \"**/*.{ts,js,json,html,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,html,scss,md}\"",
     "e2e": "ng e2e"
   },
   "dependencies": {
@@ -64,6 +67,8 @@
     "@typescript-eslint/parser": "^6.10.0",
     "angular-cli-ghpages": "^1.0.7",
     "eslint": "^8.53.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
     "jasmine-core": "~5.1.1",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.4.2",
@@ -72,6 +77,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^17.0.0",
+    "prettier": "^3.5.2",
     "raw-loader": "^4.0.2",
     "standard-changelog": "^5.0.0",
     "ts-node": "~10.9.1",

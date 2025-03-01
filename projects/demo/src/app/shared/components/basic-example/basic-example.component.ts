@@ -3,12 +3,9 @@ import { Settings } from 'ngx-json-table';
 
 @Component({
   selector: 'basic-example',
-  template: `
-    <ngx-json-table [settings]="settings"></ngx-json-table>
-  `,
+  template: ` <ngx-json-table [settings]="settings"></ngx-json-table> `,
 })
 export class BasicExampleComponent {
-
   settings: Settings = {
     sortable: true,
     sortDirection: 'asc',
@@ -18,10 +15,9 @@ export class BasicExampleComponent {
       add: true,
       edit: {
         key: true,
-        value: true
+        value: true,
       },
       delete: true,
-    }
+    },
   };
-
 }

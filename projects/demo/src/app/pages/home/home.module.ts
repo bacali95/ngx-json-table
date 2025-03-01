@@ -9,13 +9,7 @@ import { routes } from './home.routes';
 import { HomeComponent } from './home.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule,
-  ],
-  declarations: [
-    HomeComponent,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  declarations: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}

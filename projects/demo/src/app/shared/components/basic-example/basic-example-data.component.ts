@@ -3,12 +3,9 @@ import { Settings } from 'ngx-json-table';
 
 @Component({
   selector: 'basic-example-data',
-  template: `
-    <ngx-json-table [data]="data" [settings]="settings"></ngx-json-table>
-  `,
+  template: ` <ngx-json-table [data]="data" [settings]="settings"></ngx-json-table> `,
 })
 export class BasicExampleDataComponent {
-
   settings: Settings = {
     sortable: true,
     sortDirection: 'asc',
@@ -18,10 +15,10 @@ export class BasicExampleDataComponent {
       add: true,
       edit: {
         key: true,
-        value: true
+        value: true,
       },
       delete: true,
-    }
+    },
   };
 
   data: any = {
@@ -34,7 +31,7 @@ export class BasicExampleDataComponent {
       name: 'John Doe',
       phones: {
         home: '800-123-4567',
-        mobile: '877-123-1234'
+        mobile: '877-123-1234',
       },
       email: ['jd@example.com', 'jd@example.org'],
       dateOfBirth: '1980-01-02T00:00:00.000Z',
@@ -43,15 +40,14 @@ export class BasicExampleDataComponent {
         {
           name: 'Jane Doe',
           phone: '888-555-1212',
-          relationship: 'spouse'
+          relationship: 'spouse',
         },
         {
           name: 'Justin Doe',
           phone: '877-123-1212',
-          relationship: 'parent'
-        }
-      ]
-    }
+          relationship: 'parent',
+        },
+      ],
+    },
   };
-
 }

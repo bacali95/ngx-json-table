@@ -10,10 +10,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { ScrollPositionDirective } from './theme/directives/scrollPosition.directive';
 @NgModule({
-  declarations: [
-    AppComponent,
-    ScrollPositionDirective,
-  ],
+  declarations: [AppComponent, ScrollPositionDirective],
   imports: [
     BrowserModule,
     FormsModule,
@@ -25,4 +22,4 @@ import { ScrollPositionDirective } from './theme/directives/scrollPosition.direc
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

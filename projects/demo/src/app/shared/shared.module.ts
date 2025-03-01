@@ -10,29 +10,13 @@ import { BasicExampleComponent } from './components/basic-example/basic-example.
 
 import { HighlightCodeDirective } from './directives/highlight.directive';
 
-const SHARED_COMPONENTS = [
-  HeaderComponent,
-  BasicExampleComponent,
-  BasicExampleDataComponent,
-];
+const SHARED_COMPONENTS = [HeaderComponent, BasicExampleComponent, BasicExampleDataComponent];
 
-const SHARED_DIRECTIVES = [
-  HighlightCodeDirective,
-];
+const SHARED_DIRECTIVES = [HighlightCodeDirective];
 
 @NgModule({
-  imports: [
-    RouterModule,
-    CommonModule,
-    NgxJsonTableModule,
-  ],
-  declarations: [
-    ...SHARED_COMPONENTS,
-    ...SHARED_DIRECTIVES,
-  ],
-  exports: [
-    ...SHARED_COMPONENTS,
-    ...SHARED_DIRECTIVES,
-  ],
+  imports: [RouterModule, CommonModule, NgxJsonTableModule],
+  declarations: [...SHARED_COMPONENTS, ...SHARED_DIRECTIVES],
+  exports: [...SHARED_COMPONENTS, ...SHARED_DIRECTIVES],
 })
-export class SharedModule { }
+export class SharedModule {}

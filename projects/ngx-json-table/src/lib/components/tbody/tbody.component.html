@@ -1,11 +1,13 @@
-<ng-container *ngFor="let item of table;">
+<ng-container *ngFor="let item of table">
   <tr *ngIf="item.canAppear()">
-    <lib-json-table-trow [item]="item" [settings]="settings" [icons]="icons" (valueChange)="somethingChanged($event)">
+    <lib-json-table-trow
+      [item]="item"
+      [settings]="settings"
+      [icons]="icons"
+      (valueChange)="somethingChanged($event)">
     </lib-json-table-trow>
   </tr>
 </ng-container>
 <tr *ngIf="!table || table.length === 0">
-  <td colspan="2">
-    No data Found
-  </td>
+  <td colspan="2">No data Found</td>
 </tr>

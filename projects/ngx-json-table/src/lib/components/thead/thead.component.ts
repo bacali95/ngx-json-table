@@ -6,10 +6,9 @@ import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
 @Component({
   selector: 'lib-json-table-thead',
   templateUrl: './thead.component.html',
-  styleUrls: ['./thead.component.scss']
+  styleUrls: ['./thead.component.scss'],
 })
 export class NgxJsonTableTheadComponent {
-
   @Input() root: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
@@ -17,8 +16,7 @@ export class NgxJsonTableTheadComponent {
   @Output() fileLoaded = new EventEmitter<JsonValue>();
   @Output() sortDirectionChange = new EventEmitter<SortType>();
 
-  constructor() {
-  }
+  constructor() {}
 
   toggleSortDirection() {
     this.settings.sortDirection = this.settings.sortDirection === 'asc' ? 'desc' : 'asc';

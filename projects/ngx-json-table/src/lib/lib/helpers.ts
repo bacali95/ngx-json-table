@@ -33,7 +33,7 @@ export const deepExtend = function (...objects: Array<any>): any {
       return;
     }
 
-    Object.keys(obj).forEach((key) => {
+    Object.keys(obj).forEach(key => {
       src = target[key]; // source value
       val = obj[key]; // new value
 
@@ -75,8 +75,7 @@ export type JsonTreeEvent = 'add' | 'edit' | 'delete' | 'sort' | 'clean';
 export declare type JsonPrimitive = string | number | boolean | null;
 export declare type JsonValue = JsonPrimitive | JsonArray | JsonObject | undefined;
 
-export interface JsonArray extends Array<JsonValue> {
-}
+export interface JsonArray extends Array<JsonValue> {}
 
 export interface JsonObject {
   [key: string]: JsonValue;

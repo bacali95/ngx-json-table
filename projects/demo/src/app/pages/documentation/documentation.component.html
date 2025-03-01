@@ -1,13 +1,17 @@
 <header-component tagline="Documentation"></header-component>
 
 <section class="main-content">
-  <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true"
-                                                                                          class="octicon octicon-link"></span></a>Documentation
+  <h2>
+    <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Documentation
   </h2>
 
-  <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true"
-                                                                                   class="octicon octicon-link"></span></a>Component
-    Inputs</h3>
+  <h3>
+    <a id="inputs" class="anchor" href="#configuration" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Component Inputs
+  </h3>
 
   <table>
     <tr>
@@ -27,9 +31,11 @@
     </tr>
   </table>
 
-  <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true"
-                                                                                          class="octicon octicon-link"></span></a>Table
-    Configuration</h3>
+  <h3>
+    <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Table Configuration
+  </h3>
 
   <table>
     <tr>
@@ -42,113 +48,92 @@
       <td>key</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
-      <td>
-        Object keys Column settings
-      </td>
+      <td>Object keys Column settings</td>
     </tr>
     <tr>
       <td><span class="nested-obj">key</span>.headerText</td>
       <td><span class="highlight">string</span></td>
       <td>'Key'</td>
-      <td>
-        Object keys column header text.
-      </td>
+      <td>Object keys column header text.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">key</span>.width</td>
       <td><span class="highlight">string</span></td>
       <td>'40%'</td>
       <td>
-        Object keys column width, example: <span class="highlight">'40%'</span>, <span class="highlight">'150px'</span>
+        Object keys column width, example: <span class="highlight">'40%'</span>,
+        <span class="highlight">'150px'</span>
       </td>
     </tr>
     <tr>
       <td>value</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
-      <td>
-        Object values Column settings
-      </td>
+      <td>Object values Column settings</td>
     </tr>
     <tr>
       <td><span class="nested-obj">value</span>.headerText</td>
       <td><span class="highlight">string</span></td>
       <td>'Value'</td>
-      <td>
-        Object values column header text.
-      </td>
+      <td>Object values column header text.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">value</span>.width</td>
       <td><span class="highlight">string</span></td>
       <td>'60%'</td>
       <td>
-        Object values column width, example: <span class="highlight">'60%'</span>, <span
-        class="highlight">'200px'</span>
+        Object values column width, example: <span class="highlight">'60%'</span>,
+        <span class="highlight">'200px'</span>
       </td>
     </tr>
     <tr>
       <td>options</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
-      <td>
-        Whether to enable or disable the add/edit/delete options.
-      </td>
+      <td>Whether to enable or disable the add/edit/delete options.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">options</span>.add</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Whether to enable or disable the add option.
-      </td>
+      <td>Whether to enable or disable the add option.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">options</span>.edit</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
-      <td>
-        Whether to enable or disable the edit option.
-      </td>
+      <td>Whether to enable or disable the edit option.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">options.edit</span>.key</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Whether to enable or disable the edit the key.
-      </td>
+      <td>Whether to enable or disable the edit the key.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">options.edit</span>.value</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Whether to enable or disable the edit the value.
-      </td>
+      <td>Whether to enable or disable the edit the value.</td>
     </tr>
     <tr>
       <td><span class="nested-obj">options</span>.delete</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Whether to enable or disable the delete option.
-      </td>
+      <td>Whether to enable or disable the delete option.</td>
     </tr>
     <tr>
       <td>sortable</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Whether the table is sortable or not.
-      </td>
+      <td>Whether the table is sortable or not.</td>
     </tr>
     <tr>
       <td>sortDirection</td>
       <td><span class="highlight">'asc'</span> | <span class="highlight">'desc'</span></td>
       <td>undefined</td>
       <td>
-        Sort table by the object keys column with this direction by default.<br>
+        Sort table by the object keys column with this direction by default.<br />
         Applied only when <span class="highlight">sortable</span> = true.
       </td>
     </tr>
@@ -156,43 +141,43 @@
       <td>expandAll</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Expand all the objects/arrays children when loading the data the first time.
-      </td>
+      <td>Expand all the objects/arrays children when loading the data the first time.</td>
     </tr>
     <tr>
       <td>loadFromFile</td>
       <td><span class="highlight">boolean</span></td>
       <td>false</td>
-      <td>
-        Load table data from a local JSON file.
-      </td>
+      <td>Load table data from a local JSON file.</td>
     </tr>
     <tr>
       <td>iconPackage</td>
       <td>
         <span class="highlight">'basic'</span>
-        | <span class="highlight">'font-awesome'</span><br>
+        | <span class="highlight">'font-awesome'</span><br />
         | <span class="highlight">'material-design'</span>
       </td>
       <td>'basic'</td>
-      <td>
-        Name of the icon package used for the styling of the table icons.
-      </td>
+      <td>Name of the icon package used for the styling of the table icons.</td>
     </tr>
     <tr>
       <td>icons</td>
       <td><span class="highlight">'Icons'</span></td>
       <td>n/a</td>
       <td>
-        The icons metadata used for the styling of the table icons.<br>
+        The icons metadata used for the styling of the table icons.<br />
         The icons names are:
         <ul>
           <li><span class="highlight">notSorted</span>: when the table is not sorted yet.</li>
-          <li><span class="highlight">sortedAsc</span>: when the table is sorted in ascending order.</li>
-          <li><span class="highlight">sortedDesc</span>: when the table is sorted in descending order.</li>
+          <li>
+            <span class="highlight">sortedAsc</span>: when the table is sorted in ascending order.
+          </li>
+          <li>
+            <span class="highlight">sortedDesc</span>: when the table is sorted in descending order.
+          </li>
           <li><span class="highlight">expand</span>: when the object/array child is expanded.</li>
-          <li><span class="highlight">collapse</span>: when the object/array child is collapsed.</li>
+          <li>
+            <span class="highlight">collapse</span>: when the object/array child is collapsed.
+          </li>
           <li><span class="highlight">simpleChild</span>: when the child is simple(key: value).</li>
           <li><span class="highlight">addChild</span>: to add a child.</li>
           <li><span class="highlight">editChild</span>: to edit a child.</li>
@@ -208,7 +193,7 @@
       <td><span class="highlight">string</span></td>
       <td>n/a</td>
       <td>
-        The icon inner text, example: <span class="highlight">{{exampleIconInnerText}}</span>
+        The icon inner text, example: <span class="highlight">{{ exampleIconInnerText }}</span>
       </td>
     </tr>
     <tr>
@@ -216,7 +201,7 @@
       <td><span class="highlight">string</span></td>
       <td>n/a</td>
       <td>
-        The icon class, example: <span class="highlight">{{exampleIconClass}}</span>
+        The icon class, example: <span class="highlight">{{ exampleIconClass }}</span>
       </td>
     </tr>
     <tr>
@@ -224,7 +209,7 @@
       <td><span class="highlight">string</span></td>
       <td>n/a</td>
       <td>
-        The icon color, example: <span class="highlight">{{exampleIconColor}}</span>
+        The icon color, example: <span class="highlight">{{ exampleIconColor }}</span>
       </td>
     </tr>
     <tr>
@@ -232,15 +217,17 @@
       <td><span class="highlight">string</span></td>
       <td>n/a</td>
       <td>
-        The icon html and this propriety will override all other icon proprieties,<br>
-        example:<span class="highlight">{{exampleIconHtml}}</span>
+        The icon html and this propriety will override all other icon proprieties,<br />
+        example:<span class="highlight">{{ exampleIconHtml }}</span>
       </td>
     </tr>
   </table>
 
-  <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true"
-                                                                            class="octicon octicon-link"></span></a>Component
-    Outputs/Events</h3>
+  <h3>
+    <a id="events" class="anchor" href="#events" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Component Outputs/Events
+  </h3>
 
   <table>
     <tr>
@@ -250,13 +237,8 @@
     </tr>
     <tr>
       <td>(dataChange)</td>
-      <td>
-        event: <span class="highlight">Object</span>.
-      </td>
-      <td>
-        Triggered once a the data is modified.
-      </td>
+      <td>event: <span class="highlight">Object</span>.</td>
+      <td>Triggered once a the data is modified.</td>
     </tr>
   </table>
-
 </section>

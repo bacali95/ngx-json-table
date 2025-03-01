@@ -6,17 +6,15 @@ import { Icons, Settings } from '../../../lib/settings';
 @Component({
   selector: 'lib-json-table-trow',
   templateUrl: './trow.component.html',
-  styleUrls: ['./trow.component.scss']
+  styleUrls: ['./trow.component.scss'],
 })
 export class NgxJsonTableTrowComponent {
-
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
   @Output() valueChange = new EventEmitter<JsonTreeEvent>();
 
-  constructor() {
-  }
+  constructor() {}
 
   @HostListener('mouseenter')
   onMouseEnterListener() {
@@ -27,5 +25,4 @@ export class NgxJsonTableTrowComponent {
   onMouseLeaveListener() {
     this.item.showEditPanel = false;
   }
-
 }

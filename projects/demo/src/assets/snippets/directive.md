@@ -1,13 +1,14 @@
 // ...
 
 @NgModule({
-  imports: [
-    // ...
-    
+imports: [
+// ...
+
     NgxJsonTableModule,
-    
+
     // ...
-  ],
-  declarations: [ ... ]
+
+],
+declarations: [ ... ]
 })
 // ...

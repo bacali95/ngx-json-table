@@ -5,7 +5,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #606c71;
@@ -29,8 +29,14 @@ a:hover {
   border-style: solid;
   border-width: 1px;
   border-radius: 0.3rem;
-  -webkit-transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  -webkit-transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
 }
 
 .with-source {
@@ -39,7 +45,7 @@ a:hover {
   a.source {
     position: absolute;
     right: 0;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 0.875rem;
   }
 }
@@ -53,13 +59,13 @@ div.with-source {
 input.search {
   margin-bottom: 20px;
   line-height: normal;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
 }
 
 span.highlight {
   background: rgba(0, 0, 0, 0.05);
-  padding: 0 .25rem;
-  border-radius: .125rem;
+  padding: 0 0.25rem;
+  border-radius: 0.125rem;
   color: #1e6bb8;
 }
 
@@ -67,7 +73,8 @@ span.highlight {
   margin-left: 1rem;
 }
 
-.btn:hover, .btn.active {
+.btn:hover,
+.btn.active {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.2);
@@ -104,8 +111,8 @@ span.highlight {
   color: #fff;
   text-align: center;
   background-color: #182978;
-  background-image: -webkit-linear-gradient(330deg, #182978, #22A9B6);
-  background-image: linear-gradient(120deg, #182978, #22A9B6);
+  background-image: -webkit-linear-gradient(330deg, #182978, #22a9b6);
+  background-image: linear-gradient(120deg, #182978, #22a9b6);
 
   h1 a {
     color: #fff;
@@ -208,11 +215,16 @@ span.highlight {
   max-width: 100%;
 }
 
-.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  color: #22A9B6;
+  color: #22a9b6;
 }
 
 .main-content p {
@@ -223,7 +235,8 @@ span.highlight {
   font-size: 0.9rem;
 }
 
-.main-content ul, .main-content ol {
+.main-content ul,
+.main-content ol {
   margin-top: 0;
 }
 
@@ -254,13 +267,14 @@ span.highlight {
   font-weight: bold;
 }
 
-.main-content table th, .main-content table td {
+.main-content table th,
+.main-content table td {
   padding: 0.5rem 1rem;
   border: 1px solid #e9ebec;
 }
 
 .main-content table tr.section {
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: bold;
 }
 

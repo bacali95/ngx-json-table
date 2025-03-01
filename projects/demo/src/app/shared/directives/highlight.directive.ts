@@ -5,11 +5,9 @@ import hljs from 'highlight.js';
   selector: 'code[highlight]',
 })
 export class HighlightCodeDirective implements AfterViewInit {
-
-  constructor(private elRef: ElementRef) { }
+  constructor(private elRef: ElementRef) {}
 
   ngAfterViewInit() {
     hljs.highlightElement(this.elRef.nativeElement);
   }
-
 }

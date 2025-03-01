@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/bacali95/ngx-json-table.svg?branch=master)](https://travis-ci.org/bacali95/ngx-json-table)
 [![npm version](https://badge.fury.io/js/ngx-json-table.svg)](https://badge.fury.io/js/ngx-json-table)
 
-# Angular JSON Table 
+# Angular JSON Table
 
 ngx-json-table component made to represent JSON object as a simple HTML table.
 
@@ -37,9 +37,9 @@ Then register it by adding to the list of directives of your module:
 @NgModule({
   imports: [
     // ...
-    
+
     Ng2JsonTableModule,
-    
+
     // ...
   ],
   declarations: [ ... ]
@@ -109,13 +109,16 @@ And pass the data to the table:
 ```
 
 Now you have some data in the table.
- 
+
 ## Further Documentation
+
 Installation, customization and other useful articles: https://bacali95.github.io/ngx-json-table/
 
 ## Features
-* Inline Add/Edit/Delete
-* Sorting
+
+- Inline Add/Edit/Delete
+- Sorting
 
 ## License
+
 [MIT](LICENSE.txt) license.

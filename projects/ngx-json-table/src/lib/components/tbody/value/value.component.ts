@@ -6,16 +6,14 @@ import { Settings } from '../../../lib/settings';
 @Component({
   selector: 'lib-json-table-value',
   templateUrl: './value.component.html',
-  styleUrls: ['./value.component.scss']
+  styleUrls: ['./value.component.scss'],
 })
 export class NgxJsonTableValueComponent {
-
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
-  @Output() onChange = new EventEmitter<JsonTreeEvent>();
+  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
 
-  constructor() {
-  }
+  constructor() {}
 
   @HostListener('keyup.escape')
   onEscapeKeyListener() {
@@ -23,7 +21,7 @@ export class NgxJsonTableValueComponent {
     this.item.edit && this.item.toggleEdit();
     if (this.item.isNew) {
       this.item.delete();
-      this.onChange.emit('clean');
+      this.valueChange.emit('clean');
     }
   }
 
@@ -32,6 +30,6 @@ export class NgxJsonTableValueComponent {
     if (this.item.checkNotUniqueKey()) return;
     this.item.toggleEdit();
     this.item.updateState();
-    this.onChange.emit('edit');
+    this.valueChange.emit('edit');
   }
 }

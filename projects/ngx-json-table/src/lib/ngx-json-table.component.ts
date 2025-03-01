@@ -8,7 +8,6 @@ import { deepExtend, JsonValue } from './lib/helpers';
   styleUrls: ['./ngx-json-table.component.scss'],
 })
 export class NgxJsonTableComponent implements OnChanges {
-
   @Input() data: JsonValue;
   @Input() settings: Settings;
   @Output() dataChange = new EventEmitter<JsonValue>();
@@ -20,20 +19,20 @@ export class NgxJsonTableComponent implements OnChanges {
     },
     value: {
       headerText: 'Value',
-      width: '60%'
+      width: '60%',
     },
     options: {
       add: false,
       edit: {
         key: false,
-        value: false
+        value: false,
       },
-      delete: false
+      delete: false,
     },
     sortable: false,
     sortDirection: undefined,
     expandAll: false,
-    loadFromFile: false
+    loadFromFile: false,
   };
 
   constructor() {
@@ -54,7 +53,9 @@ export class NgxJsonTableComponent implements OnChanges {
       value.class = value.class ?? '';
       value.innerText = value.innerText ?? '';
       value.color = value.color ?? 'inherit';
-      value.html = value.html ?? `<i class="ngx-json-table-icon ${value.class}" style="color: ${value.color}">${value.innerText}</i>`;
+      value.html =
+        value.html ??
+        `<i class="ngx-json-table-icon ${value.class}" style="color: ${value.color}">${value.innerText}</i>`;
     }
   }
 }

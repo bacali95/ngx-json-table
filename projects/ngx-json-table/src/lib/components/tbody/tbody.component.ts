@@ -7,10 +7,9 @@ import { NgxJsonTableTheadComponent } from '../thead/thead.component';
 @Component({
   selector: 'lib-json-table-tbody',
   templateUrl: './tbody.component.html',
-  styleUrls: ['./tbody.component.scss']
+  styleUrls: ['./tbody.component.scss'],
 })
 export class NgxJsonTableTbodyComponent implements OnChanges {
-
   @Input() data: JsonValue = {};
   @Input() head: NgxJsonTableTheadComponent;
   @Input() settings: Settings;
@@ -21,10 +20,9 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   jsonTree: JsonTreeNode = new JsonTreeNode('root', '', 'object', -1, false, null, [], true);
   table: JsonTreeNode[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnChanges({data}: SimpleChanges): void {
+  ngOnChanges({ data }: SimpleChanges): void {
     if (data && this.currentData !== this.data) {
       this.data = this.data ?? {};
       this.currentData = this.data;
@@ -51,8 +49,16 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
     const keys = Object.keys(object);
     for (const key of keys) {
       const value = object[key];
-      const node = new JsonTreeNode(key, typeof value !== 'object' ? value : '',
-        value !== null ? typeof value : 'undefined', level, false, root, [], this.settings.expandAll);
+      const node = new JsonTreeNode(
+        key,
+        typeof value !== 'object' ? value : '',
+        value !== null ? typeof value : 'undefined',
+        level,
+        false,
+        root,
+        [],
+        this.settings.expandAll
+      );
       root.addChild(node);
       value !== null && typeof value === 'object' && this.buildJsonTree(node, value, level + 1);
     }

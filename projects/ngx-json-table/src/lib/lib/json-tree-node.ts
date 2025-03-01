@@ -1,4 +1,12 @@
-export type JsonValueType = 'bigint' | 'number' | 'string' | 'object' | 'boolean' | 'function' | 'symbol' | 'undefined';
+export type JsonValueType =
+  | 'bigint'
+  | 'number'
+  | 'string'
+  | 'object'
+  | 'boolean'
+  | 'function'
+  | 'symbol'
+  | 'undefined';
 
 export class JsonTreeNode {
   id: string;
@@ -25,7 +33,7 @@ export class JsonTreeNode {
     isArray?: boolean,
     parent?: JsonTreeNode,
     children?: JsonTreeNode[],
-    showChildren?: boolean,
+    showChildren?: boolean
   ) {
     this.id = `${Math.random().toString(36).substr(2, 9)}`;
     this.key = this.prevKey = key;
@@ -52,10 +60,13 @@ export class JsonTreeNode {
   }
 
   checkNotUniqueKey(): boolean {
-    return (this.key === '' || (this.parent
-      && this.parent.children.filter(c => c.id !== this.id && c.key === this.key).length > 0))
-      && (this.error = true)
-      && (setTimeout(() => this.error = false, 2000) !== null);
+    return (
+      (this.key === '' ||
+        (this.parent &&
+          this.parent.children.filter(c => c.id !== this.id && c.key === this.key).length > 0)) &&
+      (this.error = true) &&
+      setTimeout(() => (this.error = false), 2000) !== null
+    );
   }
 
   toggleEdit() {
@@ -94,7 +105,7 @@ export class JsonTreeNode {
   }
 
   delete() {
-    const parentIndex = this.parent.children.findIndex((node) => node.id === this.id);
+    const parentIndex = this.parent.children.findIndex(node => node.id === this.id);
     this.parent.children.splice(parentIndex, 1);
     if (this.parent.isArray) {
       for (let i = parentIndex; i < this.parent.children.length; i++) {

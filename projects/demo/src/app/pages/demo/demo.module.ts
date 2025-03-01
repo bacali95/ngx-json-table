@@ -8,18 +8,10 @@ import { routes } from './demo.routes';
 
 import { DemoComponent } from './demo.component';
 
-const DEMO_COMPONENTS = [
-  DemoComponent,
-];
+const DEMO_COMPONENTS = [DemoComponent];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule,
-  ],
-  declarations: [
-    ...DEMO_COMPONENTS,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  declarations: [...DEMO_COMPONENTS],
 })
-export class DemoModule { }
+export class DemoModule {}

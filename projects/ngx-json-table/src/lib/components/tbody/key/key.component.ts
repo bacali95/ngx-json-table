@@ -6,17 +6,15 @@ import { Icons, Settings } from '../../../lib/settings';
 @Component({
   selector: 'lib-json-table-key',
   templateUrl: './key.component.html',
-  styleUrls: ['./key.component.scss']
+  styleUrls: ['./key.component.scss'],
 })
 export class NgxJsonTableKeyComponent {
-
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
   @Output() valueChange = new EventEmitter<JsonTreeEvent>();
 
-  constructor() {
-  }
+  constructor() {}
 
   @HostListener('keyup.escape')
   onEscapeKeyListener() {
@@ -39,8 +37,14 @@ export class NgxJsonTableKeyComponent {
 
   addChild(isObject: boolean = false, isArray: boolean = false) {
     this.item.showChildren = true;
-    const node = new JsonTreeNode(this.item.isArray ? '0' : '', '',
-      isObject ? 'object' : 'string', this.item.level + 1, isArray, this.item);
+    const node = new JsonTreeNode(
+      this.item.isArray ? '0' : '',
+      '',
+      isObject ? 'object' : 'string',
+      this.item.level + 1,
+      isArray,
+      this.item
+    );
     node.isNew = true;
     node.edit = true;
     if (this.item.isArray) {

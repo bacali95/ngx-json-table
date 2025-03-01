@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icons, Settings, SortType } from '../../lib/settings';
 import { JsonTreeNode } from '../../lib/json-tree-node';
-import { JsonTreeEvent } from '../../lib/helpers';
+import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
 
 @Component({
-  selector: '[ngx-json-table-thead]',
+  selector: 'lib-json-table-thead',
   templateUrl: './thead.component.html',
   styleUrls: ['./thead.component.scss']
 })
@@ -13,16 +13,16 @@ export class NgxJsonTableTheadComponent {
   @Input() root: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() onChange = new EventEmitter<JsonTreeEvent>();
-  @Output() fileLoaded = new EventEmitter<any>();
-  @Output() onSortDirectionChange = new EventEmitter<SortType>();
+  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
+  @Output() fileLoaded = new EventEmitter<JsonValue>();
+  @Output() sortDirectionChange = new EventEmitter<SortType>();
 
   constructor() {
   }
 
   toggleSortDirection() {
     this.settings.sortDirection = this.settings.sortDirection === 'asc' ? 'desc' : 'asc';
-    this.onSortDirectionChange.emit(this.settings.sortDirection);
+    this.sortDirectionChange.emit(this.settings.sortDirection);
   }
 
   toggleDropdownMenu(dropdown: HTMLSpanElement) {
@@ -36,7 +36,7 @@ export class NgxJsonTableTheadComponent {
     node.edit = true;
     node.isNew = true;
     this.root.children.splice(0, 0, node);
-    this.onChange.emit('add');
+    this.valueChange.emit('add');
   }
 
   loadFile(event) {

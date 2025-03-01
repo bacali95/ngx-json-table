@@ -5,7 +5,7 @@ import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
 import { NgxJsonTableTheadComponent } from '../thead/thead.component';
 
 @Component({
-  selector: '[ngx-json-table-tbody]',
+  selector: 'lib-json-table-tbody',
   templateUrl: './tbody.component.html',
   styleUrls: ['./tbody.component.scss']
 })
@@ -15,7 +15,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   @Input() head: NgxJsonTableTheadComponent;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() dataChange = new EventEmitter<any>();
+  @Output() dataChange = new EventEmitter<JsonValue>();
 
   currentData: JsonValue = {};
   jsonTree: JsonTreeNode = new JsonTreeNode('root', '', 'object', -1, false, null, [], true);
@@ -24,7 +24,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   constructor() {
   }
 
-  ngOnChanges({data, settings, icons}: SimpleChanges): void {
+  ngOnChanges({data}: SimpleChanges): void {
     if (data && this.currentData !== this.data) {
       this.data = this.data ?? {};
       this.currentData = this.data;
@@ -74,7 +74,7 @@ export class NgxJsonTableTbodyComponent implements OnChanges {
   }
 
   jsonTreeToObject(root: JsonTreeNode): JsonValue {
-    let result: any;
+    let result: JsonValue;
     if (root.isComplex) {
       result = root.isArray ? [] : {};
       for (const node of root.children) {

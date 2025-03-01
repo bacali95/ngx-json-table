@@ -4,7 +4,7 @@ import { JsonTreeEvent } from '../../../lib/helpers';
 import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
-  selector: '[ngx-json-table-key]',
+  selector: 'lib-json-table-key',
   templateUrl: './key.component.html',
   styleUrls: ['./key.component.scss']
 })
@@ -13,7 +13,7 @@ export class NgxJsonTableKeyComponent {
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() onChange = new EventEmitter<JsonTreeEvent>();
+  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
 
   constructor() {
   }
@@ -24,7 +24,7 @@ export class NgxJsonTableKeyComponent {
     this.item.edit && this.item.toggleEdit();
     if (this.item.isNew) {
       this.item.delete();
-      this.onChange.emit('clean');
+      this.valueChange.emit('clean');
     }
   }
 
@@ -34,7 +34,7 @@ export class NgxJsonTableKeyComponent {
     this.item.toggleEdit();
     this.item.updateState();
     this.item.isNew = false;
-    this.onChange.emit('edit');
+    this.valueChange.emit('edit');
   }
 
   addChild(isObject: boolean = false, isArray: boolean = false) {
@@ -49,7 +49,7 @@ export class NgxJsonTableKeyComponent {
       }
     }
     this.item.children.splice(0, 0, node);
-    this.onChange.emit('add');
+    this.valueChange.emit('add');
   }
 
   toggleDropdownMenu(dropdown: HTMLSpanElement) {

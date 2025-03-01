@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Icons, iconsPackages, Settings } from './lib/settings';
-import { deepExtend } from './lib/helpers';
+import { deepExtend, JsonValue } from './lib/helpers';
 
 @Component({
-  selector: 'ngx-json-table',
+  selector: 'lib-json-table',
   templateUrl: './ngx-json-table.component.html',
   styleUrls: ['./ngx-json-table.component.scss'],
 })
 export class NgxJsonTableComponent implements OnChanges {
 
-  @Input() data: any;
+  @Input() data: JsonValue;
   @Input() settings: Settings;
-  @Output() dataChange = new EventEmitter<any>();
+  @Output() dataChange = new EventEmitter<JsonValue>();
 
   defaultSettings: Settings = {
     key: {

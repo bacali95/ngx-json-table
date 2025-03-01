@@ -1,95 +1,145 @@
-<app-header tagline="Quick Start & Demo"></app-header>
+<app-header tagline="Quick Start Guide & Live Demos"></app-header>
 <section class="main-content">
   <h2>
     <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"
       ><span aria-hidden="true" class="octicon octicon-link"></span></a
     >Getting Started
   </h2>
-  <p>Hello and Welcome!</p>
+  <p>
+    Welcome to ngx-json-table! Follow this guide to quickly integrate the library into your Angular
+    application.
+  </p>
 
   <h3>
     <a id="installation" class="anchor" href="#installation" aria-hidden="true"
       ><span aria-hidden="true" class="octicon octicon-link"></span></a
     >Installation
   </h3>
-  <p>
-    The library is available as npm package, so all you need to do is to run the following command:
-  </p>
+  <p>The library is available as an npm package. Install it by running:</p>
   <pre>
     <code [highlight]="snippets.install" language="bash"></code>
   </pre>
   <p>
-    This command will create a record in your `package.json` file and install the package into the
-    npm modules folder.
+    This will add ngx-json-table to your package.json dependencies and install it in your
+    node_modules folder.
   </p>
 
-  <h2>
-    <a id="examples" class="anchor" href="#examples" aria-hidden="true"
-      ><span aria-hidden="true" class="octicon octicon-link"></span></a
-    >Examples
-  </h2>
   <h3>
-    <a id="minimal-setup" class="anchor" href="#minimal-setup" aria-hidden="true"
+    <a id="module-import" class="anchor" href="#module-import" aria-hidden="true"
       ><span aria-hidden="true" class="octicon octicon-link"></span></a
-    >Minimal Setup Example
+    >Module Import
   </h3>
-  <p>First thing you need to do is to import the ngx-json-table directives into your component.</p>
+  <p>Import the NgxJsonTableModule into your Angular module:</p>
   <pre>
-    <code [highlight]="snippets.install" language="typescript"></code>
+    <code [highlight]="snippets.require" language="typescript"></code>
   </pre>
-  <p>Then register it by adding to the list of directives of your module:</p>
+  <p>Then add it to your module's imports array:</p>
   <pre>
     <code [highlight]="snippets.directive" language="typescript"></code>
   </pre>
+
+  <h2>
+    <a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Basic Usage
+  </h2>
+
+  <h3>
+    <a id="simple-table" class="anchor" href="#simple-table" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Simple Table
+  </h3>
   <p>
-    Now, we need to configure the table and add it into the template. There is
-    <strong>no required</strong> setting for the component to start working, but we will use the
-    full feature settings object for the demo. Let's register <i>settings</i> property inside of the
-    component where we want to have the table (<a [routerLink]="['/documentation']"
-      >Settings documentation</a
-    >):
+    The most basic usage requires no configuration. Simply add the
+    <code>&lt;table ngx-json-table&gt;&lt;/table&gt;</code>
+    element to your template:
+  </p>
+  <pre>
+    <code [highlight]="snippets.template" language="typescript"></code>
+  </pre>
+  <p>Here's what an empty table looks like:</p>
+  <div>
+    <app-basic-example></app-basic-example>
+  </div>
+
+  <h3>
+    <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Configuration Options
+  </h3>
+  <p>
+    While no configuration is required, you can customize the table's behavior and appearance using
+    the settings object. Here's an example with common options enabled:
   </p>
   <pre>
     <code [highlight]="snippets.settings" language="typescript"></code>
   </pre>
-  <p>Finally let's put the ngx-json-table component inside of the template:</p>
-  <pre>
-    <code [highlight]="snippets.template" language="typescript"></code>
-  </pre>
   <p>
-    At this step you will have a minimally configured table which should look something like this:
+    The settings object allows you to control sorting, editing capabilities, and visual aspects of
+    the table. For complete documentation of all available options, see the
+    <a [routerLink]="['/documentation']">Settings documentation</a>.
   </p>
-  <div>
-    <app-basic-example></app-basic-example>
-  </div>
-  <p></p>
-  <p>
-    By making the table editable, all functions are available, so you already able to
-    add/edit/delete rows or sort the table, etc.
-  </p>
-  <p>
-    But it feels like something is missing... Right, there is no data in the table by default. To
-    add some, let's create any valid JSON object.
-  </p>
+
+  <h3>
+    <a id="with-data" class="anchor" href="#with-data" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Adding Data
+  </h3>
+  <p>To populate the table with data, create a JSON object in your component:</p>
   <pre>
     <code [highlight]="snippets.data" language="typescript"></code>
   </pre>
-  <p>And pass the data to the table:</p>
+  <p>Then bind it to the table using the data property:</p>
   <pre>
     <code [highlight]="snippets.dataTemplate" language="typescript"></code>
   </pre>
-  <p>Now you have some data in the table:</p>
+  <p>Here's a table with the sample data and interactive editing features enabled:</p>
   <div>
     <app-basic-example-data></app-basic-example-data>
   </div>
-  <p></p>
-  <p>
-    That's it for a minimal setup, our final component should look like this, pretty simple, huh?
-  </p>
+
+  <h3>
+    <a id="interactive-features" class="anchor" href="#interactive-features" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Interactive Features
+  </h3>
+  <p>With the appropriate settings, users can:</p>
+  <ul>
+    <li>Add new properties to objects or items to arrays</li>
+    <li>Edit existing keys and values</li>
+    <li>Delete properties or array items</li>
+    <li>Sort data in ascending or descending order</li>
+    <li>Expand or collapse nested objects and arrays</li>
+    <li>Import JSON data from files</li>
+  </ul>
+  <p>Try these features in the demo above by clicking on the various icons.</p>
+
+  <h3>
+    <a id="complete-example" class="anchor" href="#complete-example" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Complete Example
+  </h3>
+  <p>Here's a complete component implementation with all the pieces together:</p>
   <pre class="with-source">
-    <a class="source" href="https://github.com/bacali95/ngx-json-table/blob/master/projects/demo/src/app/shared/components/basic-example/basic-example-data.component.ts" target="_blank">Demo Source</a>
+    <a class="source" href="https://github.com/bacali95/ngx-json-table/blob/main/projects/demo/src/app/shared/components/basic-example/basic-example-data.component.ts" target="_blank">View Source</a>
     <code [highlight]="snippets.basicFull" language="typescript"></code>
   </pre>
 
-  <p>Full component documentation you can find <a [routerLink]="['/documentation']">here</a>.</p>
+  <h2>
+    <a id="next-steps" class="anchor" href="#next-steps" aria-hidden="true"
+      ><span aria-hidden="true" class="octicon octicon-link"></span></a
+    >Next Steps
+  </h2>
+  <p>
+    Now that you have a basic understanding of how to use ngx-json-table, explore the
+    <a [routerLink]="['/examples']">Examples</a> section for more advanced use cases or check the
+    <a [routerLink]="['/documentation']">Documentation</a> for a complete reference of all available
+    options.
+  </p>
+
+  <p>
+    If you have questions or need help, feel free to
+    <a href="https://github.com/bacali95/ngx-json-table/issues" target="_blank">open an issue</a> on
+    GitHub.
+  </p>
 </section>

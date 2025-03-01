@@ -70,7 +70,6 @@
               "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ],
-            "webWorkerTsConfig": "projects/demo/tsconfig.worker.json",
             "allowedCommonJsDependencies": ["lodash", "highlight.js"]
           },
           "configurations": {

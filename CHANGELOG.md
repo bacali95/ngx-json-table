@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.1] - 2024-03-01
+
+### Fixed
+
+- Fixed Ivy compilation mode for library publication by setting `compilationMode` to `partial`
+
 ## [2.1.0] - 2024-03-01
 
 ### Added

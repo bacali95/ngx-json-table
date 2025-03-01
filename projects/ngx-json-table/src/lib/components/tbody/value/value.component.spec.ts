@@ -252,4 +252,81 @@ describe('ValueComponent', () => {
     const deleteIcon = fixture.debugElement.query(By.css('.delete-icon'));
     expect(deleteIcon).toBeFalsy();
   });
+
+  it('should handle escape key properly for regular items', () => {
+    // Create test item
+    const testNode = new JsonTreeNode('testKey', 'testValue', 'string', 0, false, null, [], true);
+    testNode.edit = true;
+    component.item = testNode;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+    spyOn(testNode, 'resetState');
+    spyOn(testNode, 'toggleEdit');
+
+    // Trigger escape key
+    component.onEscapeKeyListener();
+
+    expect(testNode.resetState).toHaveBeenCalled();
+    expect(testNode.toggleEdit).toHaveBeenCalled();
+    expect(component.valueChange.emit).not.toHaveBeenCalled();
+  });
+
+  it('should handle escape key for new items', () => {
+    // Create test item that is new
+    const testNode = new JsonTreeNode('testKey', 'testValue', 'string', 0, false, null, [], true);
+    testNode.isNew = true;
+    testNode.edit = true;
+    component.item = testNode;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+    spyOn(testNode, 'delete');
+
+    // Trigger escape key
+    component.onEscapeKeyListener();
+
+    expect(testNode.delete).toHaveBeenCalled();
+    expect(component.valueChange.emit).toHaveBeenCalledWith('clean');
+  });
+
+  it('should handle enter key to save changes', () => {
+    // Create test item
+    const testNode = new JsonTreeNode('testKey', 'testValue', 'string', 0, false, null, [], true);
+    testNode.edit = true;
+    component.item = testNode;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+    spyOn(testNode, 'toggleEdit');
+    spyOn(testNode, 'updateState');
+    spyOn(testNode, 'checkNotUniqueKey').and.returnValue(false);
+
+    // Trigger enter key
+    component.onEnterKeyListener();
+
+    expect(testNode.checkNotUniqueKey).toHaveBeenCalled();
+    expect(testNode.toggleEdit).toHaveBeenCalled();
+    expect(testNode.updateState).toHaveBeenCalled();
+    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+  });
+
+  it('should not proceed with enter key if key is not unique', () => {
+    // Create test item
+    const testNode = new JsonTreeNode('testKey', 'testValue', 'string', 0, false, null, [], true);
+    testNode.edit = true;
+    component.item = testNode;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+    spyOn(testNode, 'toggleEdit');
+    spyOn(testNode, 'checkNotUniqueKey').and.returnValue(true);
+
+    // Trigger enter key
+    component.onEnterKeyListener();
+
+    expect(testNode.checkNotUniqueKey).toHaveBeenCalled();
+    expect(testNode.toggleEdit).not.toHaveBeenCalled();
+    expect(component.valueChange.emit).not.toHaveBeenCalled();
+  });
 });

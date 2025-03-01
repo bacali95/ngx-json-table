@@ -131,12 +131,15 @@ describe('KeyComponent', () => {
     const originalKey = component.item.key;
     fixture.detectChanges();
 
+    // Find input field and set new value
+    const inputField = fixture.debugElement.query(By.css('input'));
+    inputField.nativeElement.value = 'newKey';
+    inputField.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
     // Find and click confirm button
     const confirmButton = fixture.debugElement.query(By.css('.confirm-icon'));
     if (confirmButton) {
-      // Simulate user input by updating the node's key directly
-      component.item.key = 'newKey';
-
       confirmButton.nativeElement.click();
       fixture.detectChanges();
 
@@ -157,12 +160,15 @@ describe('KeyComponent', () => {
     const originalKey = component.item.key;
     fixture.detectChanges();
 
+    // Find input field and set new value
+    const inputField = fixture.debugElement.query(By.css('input'));
+    inputField.nativeElement.value = 'newKey';
+    inputField.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
     // Find and click cancel button
     const cancelButton = fixture.debugElement.query(By.css('.cancel-icon'));
     if (cancelButton) {
-      // Simulate user input by updating the node's key directly
-      component.item.key = 'newKey';
-
       cancelButton.nativeElement.click();
       fixture.detectChanges();
 
@@ -199,5 +205,124 @@ describe('KeyComponent', () => {
     fixture.detectChanges();
 
     expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+  });
+
+  it('should add a child node when addChild is called', () => {
+    // Create a complex node (object)
+    const complexNode = new JsonTreeNode('complexKey', '', 'object', 0, false, null, [], true);
+    component.item = complexNode;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+
+    // Call addChild method
+    component.addChild(true, false);
+    fixture.detectChanges();
+
+    // Should have added a child node
+    expect(complexNode.children.length).toBe(1);
+    expect(complexNode.children[0].isNew).toBe(true);
+    expect(complexNode.children[0].edit).toBe(true);
+    expect(complexNode.children[0].type).toBe('object');
+    expect(component.valueChange.emit).toHaveBeenCalledWith('add');
+  });
+
+  it('should add an array child node when addChild is called with isArray=true', () => {
+    // Create a complex node (object)
+    const complexNode = new JsonTreeNode('complexKey', '', 'object', 0, false, null, [], true);
+    component.item = complexNode;
+    fixture.detectChanges();
+
+    // Call addChild method with isArray=true
+    component.addChild(false, true);
+    fixture.detectChanges();
+
+    // Should have added a child node that is an array
+    expect(complexNode.children.length).toBe(1);
+    expect(complexNode.children[0].isArray).toBe(true);
+  });
+
+  it('should update array indices when adding a child to an array node', () => {
+    // Create an array node with existing children
+    const arrayNode = new JsonTreeNode('arrayKey', '', 'object', 0, true, null, [], true);
+
+    // Add existing children with numerical keys
+    const child1 = new JsonTreeNode('0', 'value1', 'string', 1, false, arrayNode, [], true);
+    const child2 = new JsonTreeNode('1', 'value2', 'string', 1, false, arrayNode, [], true);
+    arrayNode.children = [child1, child2];
+
+    component.item = arrayNode;
+    fixture.detectChanges();
+
+    // Call addChild method
+    component.addChild();
+    fixture.detectChanges();
+
+    // Should have updated the indices of existing children
+    expect(arrayNode.children.length).toBe(3);
+    expect(arrayNode.children[1].key).toBe('1');
+    expect(arrayNode.children[2].key).toBe('2');
+    expect(arrayNode.children[0].key).toBe('0'); // The new node
+    expect(arrayNode.children[0].isNew).toBe(true);
+  });
+
+  it('should toggle dropdown menu visibility when toggleDropdownMenu is called', () => {
+    // Create a test dropdown element
+    const dropdownElement = document.createElement('span');
+    dropdownElement.style.display = 'none';
+
+    // Call the method
+    component.toggleDropdownMenu(dropdownElement);
+
+    // Should have toggled the display style
+    expect(dropdownElement.style.display).toBe('block');
+
+    // Call it again to toggle back
+    component.toggleDropdownMenu(dropdownElement);
+
+    // Should have toggled the display style back
+    expect(dropdownElement.style.display).toBe('none');
+  });
+
+  it('should properly propagate value changes to parent', () => {
+    spyOn(component.valueChange, 'emit');
+
+    component.onValueChange('testValue');
+
+    expect(component.valueChange.emit).toHaveBeenCalledWith('testValue');
+  });
+
+  it('should handle escape key to cancel editing', () => {
+    // Enable edit mode
+    settings.options.edit.key = true;
+    component.item.edit = true;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+
+    // Trigger escape key event
+    component.onEscapeKeyListener();
+    fixture.detectChanges();
+
+    expect(component.item.edit).toBe(false);
+    // Shouldn't emit clean for regular items
+    expect(component.valueChange.emit).not.toHaveBeenCalled();
+  });
+
+  it('should handle escape key for new items', () => {
+    // Setup a new item
+    component.item.isNew = true;
+    component.item.edit = true;
+    fixture.detectChanges();
+
+    spyOn(component.valueChange, 'emit');
+    spyOn(component.item, 'delete');
+
+    // Trigger escape key event
+    component.onEscapeKeyListener();
+    fixture.detectChanges();
+
+    expect(component.item.delete).toHaveBeenCalled();
+    expect(component.valueChange.emit).toHaveBeenCalledWith('clean');
   });
 });

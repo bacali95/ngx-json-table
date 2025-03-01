@@ -1,7 +1,7 @@
 // ...
 @Component({
 template: `
-    <ngx-json-table [settings]="settings"></ngx-json-table>
+    <table ngx-json-table [settings]="settings"></table>
  `
 })
 // ...

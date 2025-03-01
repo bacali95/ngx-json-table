@@ -3,7 +3,7 @@ import { Icons, iconsPackages, Settings } from './lib/settings';
 import { deepExtend, JsonValue } from './lib/helpers';
 
 @Component({
-  selector: 'lib-json-table',
+  selector: 'ngx-json-table',
   templateUrl: './ngx-json-table.component.html',
   styleUrls: ['./ngx-json-table.component.scss'],
 })

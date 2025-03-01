@@ -3,7 +3,7 @@ import { Settings } from 'ngx-json-table';
 
 @Component({
   selector: 'app-basic-example',
-  template: ` <lib-json-table [settings]="settings"></lib-json-table> `,
+  template: ` <ngx-json-table [settings]="settings"></ngx-json-table> `,
 })
 export class BasicExampleComponent {
   settings: Settings = {

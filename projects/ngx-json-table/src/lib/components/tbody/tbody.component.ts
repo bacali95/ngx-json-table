@@ -5,7 +5,7 @@ import { JsonTreeEvent, JsonValue } from '../../lib/helpers';
 import { TheadComponent } from '../thead/thead.component';
 
 @Component({
-  selector: 'lib-json-table-tbody',
+  selector: 'ngx-json-table-tbody',
   templateUrl: './tbody.component.html',
   styleUrls: ['./tbody.component.scss'],
 })

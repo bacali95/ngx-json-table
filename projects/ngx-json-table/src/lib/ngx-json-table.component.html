@@ -1,22 +1,22 @@
 <table>
   <thead>
-    <lib-json-table-thead
+    <ngx-json-table-thead
       #thead
       [settings]="defaultSettings"
       [icons]="defaultSettings.icons"
       (valueChange)="tbody.somethingChanged($event)"
       (fileLoaded)="data = $event"
       (sortDirectionChange)="tbody.toggleSortDirection($event)">
-    </lib-json-table-thead>
+    </ngx-json-table-thead>
   </thead>
   <tbody>
-    <lib-json-table-tbody
+    <ngx-json-table-tbody
       #tbody
       [head]="thead"
       [data]="data"
       (dataChange)="dataChange.emit($event)"
       [settings]="defaultSettings"
       [icons]="defaultSettings.icons">
-    </lib-json-table-tbody>
+    </ngx-json-table-tbody>
   </tbody>
 </table>

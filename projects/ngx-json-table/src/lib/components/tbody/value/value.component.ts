@@ -4,7 +4,7 @@ import { JsonTreeEvent } from '../../../lib/helpers';
 import { Settings } from '../../../lib/settings';
 
 @Component({
-  selector: 'lib-json-table-value',
+  selector: 'ngx-json-table-value',
   templateUrl: './value.component.html',
   styleUrls: ['./value.component.scss'],
 })

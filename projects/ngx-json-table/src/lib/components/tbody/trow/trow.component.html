@@ -1,16 +1,16 @@
 <td>
-  <lib-json-table-key
+  <ngx-json-table-key
     [style]="{ width: settings.key.width }"
     [item]="item"
     [settings]="settings"
     [icons]="icons"
     (valueChange)="valueChange.emit($event)">
-  </lib-json-table-key>
+  </ngx-json-table-key>
 </td>
 <td [style]="{ width: settings.value.width }" class="row-value">
-  <lib-json-table-value
+  <ngx-json-table-value
     [item]="item"
     [settings]="settings"
     (valueChange)="valueChange.emit($event)">
-  </lib-json-table-value>
+  </ngx-json-table-value>
 </td>

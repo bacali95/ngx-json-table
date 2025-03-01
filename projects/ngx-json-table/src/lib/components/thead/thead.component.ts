@@ -28,7 +28,7 @@ export class TheadComponent {
     dropdown.style.display = value === 'none' || value === '' ? 'block' : 'none';
   }
 
-  addChild(dropdown: HTMLSpanElement, isObject: boolean = false, isArray: boolean = false) {
+  addChild(dropdown: HTMLSpanElement, isObject = false, isArray = false) {
     dropdown.style.display = 'none';
     const node = new JsonTreeNode('', '', isObject ? 'object' : 'string', 0, isArray, this.root);
     node.edit = true;

@@ -44,7 +44,7 @@ export class TbodyComponent implements OnChanges {
     this.buildTable(this.jsonTree);
   }
 
-  buildJsonTree(root: JsonTreeNode, object: JsonValue, level: number = 0) {
+  buildJsonTree(root: JsonTreeNode, object: JsonValue, level = 0) {
     root.isArray = Array.isArray(object);
     const keys = Object.keys(object);
     for (const key of keys) {

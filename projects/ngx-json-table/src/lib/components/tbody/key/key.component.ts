@@ -36,7 +36,7 @@ export class KeyComponent {
     this.valueChange.emit('edit');
   }
 
-  addChild(isObject: boolean = false, isArray: boolean = false) {
+  addChild(isObject = false, isArray = false) {
     this.item.showChildren = true;
     const node = new JsonTreeNode(
       this.item.isArray ? '0' : '',

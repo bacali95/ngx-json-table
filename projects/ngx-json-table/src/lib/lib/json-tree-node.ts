@@ -22,10 +22,10 @@ export class JsonTreeNode {
   parent: JsonTreeNode | null;
   children: JsonTreeNode[];
   showChildren: boolean;
-  edit: boolean = false;
-  showEditPanel: boolean = false;
-  error: boolean = false;
-  isNew: boolean = false;
+  edit = false;
+  showEditPanel = false;
+  error = false;
+  isNew = false;
 
   constructor(
     key: string,
@@ -48,7 +48,7 @@ export class JsonTreeNode {
     this.showChildren = showChildren ?? false;
   }
 
-  toggleShowChildren(allLevels: boolean = false) {
+  toggleShowChildren(allLevels = false) {
     this.showChildren = !this.showChildren;
     if (allLevels) {
       const processAllLevels = (parent: JsonTreeNode) => {

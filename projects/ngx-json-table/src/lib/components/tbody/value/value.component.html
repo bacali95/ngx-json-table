@@ -1,8 +1,23 @@
-<span *ngIf="(!item.isNew && !settings.options.edit.value) || !item.edit || item.isComplex">{{
-  item.value
-}}</span>
+<span
+  class="ngx-json-table-row-value"
+  *ngIf="(!item.isNew && !settings.options.edit.value) || !item.edit || item.isComplex"
+  [style.color]="item.value ? 'black' : 'darkgray'"
+  >{{
+    item.value ||
+      (item.isComplex
+        ? (item.isArray ? 'Array' : 'Object') +
+          (item.isArray ? '[' : '{') +
+          item.children.length +
+          (item.isArray ? ']' : '}')
+        : '')
+  }}</span
+>
 <span
   *ngIf="(item.isNew || settings.options.edit.value) && item.edit && !item.isComplex"
   class="edit-input">
-  <textarea [value]="item.value" #valueInput (keyup)="item.value = valueInput.value"></textarea>
+  <textarea
+    #valueInput
+    class="ngx-json-table-row-value-input"
+    [value]="item.value"
+    (keyup)="item.value = valueInput.value"></textarea>
 </span>

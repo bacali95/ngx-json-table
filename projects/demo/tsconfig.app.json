@@ -5,5 +5,6 @@
     "types": ["node"]
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/**/*.d.ts", "../ngx-json-table/src/**/*.ts"]
+  "include": ["src/**/*.d.ts", "../ngx-json-table/src/**/*.ts"],
+  "exclude": ["../ngx-json-table/src/test.ts", "../ngx-json-table/src/**/*.spec.ts"]
 }

@@ -37,8 +37,8 @@ export class TheadComponent {
     this.valueChange.emit('add');
   }
 
-  loadFile(event) {
-    const [file] = event.target.files;
+  loadFile(event: InputEvent) {
+    const file = (event.target as HTMLInputElement).files[0];
     if (file && file.type === 'application/json') {
       const fileReader = new FileReader();
       fileReader.readAsText(file);

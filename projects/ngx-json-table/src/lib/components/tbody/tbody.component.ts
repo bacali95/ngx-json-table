@@ -87,13 +87,17 @@ export class TbodyComponent implements OnChanges {
         result[node.key] = this.jsonTreeToObject(node);
       }
     } else {
-      const value = `${root.value}`;
-      if (`${parseFloat(value)}` === value) {
-        result = parseFloat(value);
-      } else if (['true', 'false'].includes(value.toLowerCase())) {
-        result = value === 'true';
+      if (typeof root.value === 'string') {
+        result = root.value;
       } else {
-        result = value;
+        const value = `${root.value}`;
+        if (`${parseFloat(value)}` === value) {
+          result = parseFloat(value);
+        } else if (['true', 'false'].includes(value.toLowerCase())) {
+          result = value === 'true';
+        } else {
+          result = value;
+        }
       }
     }
     return result;
@@ -114,11 +118,11 @@ export class TbodyComponent implements OnChanges {
       case 'delete':
         this.rebuildTable();
         this.currentData = this.jsonTreeToObject(this.jsonTree);
-        this.dataChange.next(this.currentData);
+        this.dataChange.emit(this.currentData);
         break;
       case 'edit':
         this.currentData = this.jsonTreeToObject(this.jsonTree);
-        this.dataChange.next(this.currentData);
+        this.dataChange.emit(this.currentData);
         break;
       case 'clean':
         this.rebuildTable();

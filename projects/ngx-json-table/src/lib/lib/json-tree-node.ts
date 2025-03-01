@@ -76,6 +76,7 @@ export class JsonTreeNode {
   }
 
   addChild(child: JsonTreeNode) {
+    child.parent = this;
     this.children.push(child);
   }
 
@@ -114,5 +115,6 @@ export class JsonTreeNode {
         this.parent.children[i].key = `${parseInt(this.parent.children[i].key, 10) - 1}`;
       }
     }
+    this.parent = null;
   }
 }

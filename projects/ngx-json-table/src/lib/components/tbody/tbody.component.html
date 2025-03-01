@@ -1,7 +1,8 @@
 <ng-container *ngFor="let item of table">
   <tr
-    *ngIf="item.canAppear()"
     ngx-json-table-trow
+    *ngIf="item.canAppear()"
+    class="ngx-json-table-row ngx-json-table-row-{{ item.level }}"
     [item]="item"
     [settings]="settings"
     [icons]="icons"

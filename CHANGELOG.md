@@ -1,5 +1,14 @@
 # Changelog
 
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.1.2](https://github.com/bacali95/ngx-json-table/compare/v2.1.1...v2.1.2) (2025-03-01)
+
+
+### Bug Fixes
+
+* update icon handling and improve component styling ([c6e3bff](https://github.com/bacali95/ngx-json-table/commit/c6e3bffd24e84cac8ee69f3e0bcb8298d09a4bf1))
+
 ## [2.1.1] - 2024-03-01
 
 ### Fixed

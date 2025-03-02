@@ -6,7 +6,7 @@
     [item]="item"
     [settings]="settings"
     [icons]="icons"
-    (valueChange)="somethingChanged($event)"></tr>
+    (somethingChanged)="somethingChanged($event)"></tr>
 </ng-container>
 <tr *ngIf="!table || table.length === 0">
   <td colspan="2">No data Found</td>

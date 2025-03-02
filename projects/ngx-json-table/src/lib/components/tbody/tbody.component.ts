@@ -64,7 +64,7 @@ export class TbodyComponent implements OnChanges {
     }
   }
 
-  sortJsonTree(root: JsonTreeNode, sortDirection: SortType = 'asc') {
+  sortJsonTree(root: JsonTreeNode, sortDirection: SortType) {
     root.children.sort((a, b) => a.key.localeCompare(b.key));
     sortDirection === 'desc' && root.children.reverse();
     for (const node of root.children) {
@@ -81,29 +81,30 @@ export class TbodyComponent implements OnChanges {
 
   jsonTreeToObject(root: JsonTreeNode): JsonValue {
     let result: JsonValue;
-    if (root.isComplex) {
-      result = root.isArray ? [] : {};
-      for (const node of root.children) {
-        result[node.key] = this.jsonTreeToObject(node);
-      }
-    } else {
-      if (typeof root.value === 'string') {
-        result = root.value;
-      } else {
-        const value = `${root.value}`;
-        if (`${parseFloat(value)}` === value) {
-          result = parseFloat(value);
-        } else if (['true', 'false'].includes(value.toLowerCase())) {
-          result = value === 'true';
-        } else {
-          result = value;
+
+    switch (root.type) {
+      case 'object':
+        result = root.isArray ? [] : {};
+        for (const node of root.children) {
+          result[node.key] = this.jsonTreeToObject(node);
         }
-      }
+        break;
+      case 'number':
+      case 'bigint':
+        result = parseFloat(`${root.value}`);
+        break;
+      case 'boolean':
+        result = `${root.value}` === 'true';
+        break;
+      default:
+        result = root.value;
+        break;
     }
+
     return result;
   }
 
-  toggleSortDirection(sortDirection) {
+  toggleSortDirection(sortDirection: SortType) {
     this.sortJsonTree(this.jsonTree, sortDirection);
     this.somethingChanged('sort');
   }

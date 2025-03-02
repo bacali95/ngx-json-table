@@ -4,10 +4,10 @@
   [item]="item"
   [settings]="settings"
   [icons]="icons"
-  (valueChange)="valueChange.emit($event)"></td>
+  (somethingChanged)="somethingChanged.emit($event)"></td>
 <td
   ngx-json-table-value
   [style]="{ width: settings.value.width }"
   [item]="item"
   [settings]="settings"
-  (valueChange)="valueChange.emit($event)"></td>
+  (somethingChanged)="somethingChanged.emit($event)"></td>

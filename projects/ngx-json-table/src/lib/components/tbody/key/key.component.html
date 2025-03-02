@@ -42,7 +42,7 @@
     <span
       class="delete-child"
       *ngIf="settings.options.delete"
-      (click)="item.delete(); valueChange.emit('delete')"
+      (click)="item.delete(); somethingChanged.emit('delete')"
       [innerHTML]="icons.deleteChild | sanitizeHtml"></span>
   </span>
   <span *ngIf="item.edit" class="float-right">

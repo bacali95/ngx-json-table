@@ -19,7 +19,7 @@ export class JsonTreeNode {
   level: number;
   type: JsonValueType;
   isArray: boolean;
-  parent: JsonTreeNode | null;
+  parent?: JsonTreeNode | null;
   children: JsonTreeNode[];
   showChildren: boolean;
   edit = false;
@@ -31,21 +31,21 @@ export class JsonTreeNode {
     key: string,
     value: JsonValue,
     type: JsonValueType,
-    level?: number,
-    isArray?: boolean,
-    parent?: JsonTreeNode | null,
-    children?: JsonTreeNode[],
-    showChildren?: boolean
+    level: number,
+    isArray: boolean,
+    parent: JsonTreeNode | null,
+    children: JsonTreeNode[] = [],
+    showChildren: boolean = false
   ) {
-    this.id = `${Math.random().toString(36).substr(2, 9)}`;
+    this.id = `${Math.random().toString(36).substring(2, 9)}`;
     this.key = this.prevKey = key;
     this.value = this.prevValue = value;
     this.type = type;
-    this.level = level ?? 0;
-    this.isArray = isArray ?? false;
-    this.parent = parent ?? null;
-    this.children = children ?? [];
-    this.showChildren = showChildren ?? false;
+    this.level = level;
+    this.isArray = isArray;
+    this.parent = parent;
+    this.children = children;
+    this.showChildren = showChildren;
   }
 
   toggleShowChildren(allLevels = false) {
@@ -62,13 +62,13 @@ export class JsonTreeNode {
   }
 
   checkNotUniqueKey(): boolean {
-    return (
-      (this.key === '' ||
-        (this.parent &&
-          this.parent.children.filter(c => c.id !== this.id && c.key === this.key).length > 0)) &&
-      (this.error = true) &&
-      setTimeout(() => (this.error = false), 2000) !== null
-    );
+    if (!this.key || this.parent?.children.some(c => c.id !== this.id && c.key === this.key)) {
+      this.error = true;
+      setTimeout(() => (this.error = false), 2000);
+      return true;
+    }
+
+    return false;
   }
 
   toggleEdit() {

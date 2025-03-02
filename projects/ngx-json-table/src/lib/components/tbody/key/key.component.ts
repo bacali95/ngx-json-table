@@ -8,12 +8,10 @@ import { Icons, Settings } from '../../../lib/settings';
   styleUrls: ['./key.component.scss'],
 })
 export class KeyComponent {
-  @Input() value: unknown;
-  @Output() valueChange = new EventEmitter<unknown>();
-
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
+  @Output() somethingChanged = new EventEmitter<'clean' | 'edit' | 'add' | 'delete'>();
 
   constructor() {}
 
@@ -23,17 +21,20 @@ export class KeyComponent {
     this.item.edit && this.item.toggleEdit();
     if (this.item.isNew) {
       this.item.delete();
-      this.valueChange.emit('clean');
+      this.somethingChanged.emit('clean');
     }
   }
 
   @HostListener('keyup.enter')
   onEnterKeyListener() {
-    if (this.item.checkNotUniqueKey()) return;
+    if (this.item.checkNotUniqueKey()) return false;
+
     this.item.toggleEdit();
     this.item.updateState();
     this.item.isNew = false;
-    this.valueChange.emit('edit');
+    this.somethingChanged.emit('edit');
+
+    return true;
   }
 
   addChild(isObject = false, isArray = false) {
@@ -54,15 +55,11 @@ export class KeyComponent {
       }
     }
     this.item.children.splice(0, 0, node);
-    this.valueChange.emit('add');
+    this.somethingChanged.emit('add');
   }
 
   toggleDropdownMenu(dropdown: HTMLSpanElement) {
     const value = dropdown.style.display;
     dropdown.style.display = value === 'none' || value === '' ? 'block' : 'none';
-  }
-
-  public onValueChange(value: unknown): void {
-    this.valueChange.emit(value);
   }
 }

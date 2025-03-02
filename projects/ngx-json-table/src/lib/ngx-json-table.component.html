@@ -3,7 +3,7 @@
   #thead
   [settings]="defaultSettings"
   [icons]="defaultSettings.icons"
-  (valueChange)="tbody.somethingChanged($event)"
+  (somethingChanged)="tbody.somethingChanged($event)"
   (fileLoaded)="data = $event"
   (sortDirectionChange)="tbody.toggleSortDirection($event)"></thead>
 <tbody

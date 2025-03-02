@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icons, Settings, SortType } from '../../lib/settings';
 import { JsonTreeNode } from '../../lib/json-tree-node';
-import { JsonTreeEvent, JsonValue } from '../../lib/types';
+import { JsonValue } from '../../lib/types';
 
 @Component({
   selector: '[ngx-json-table-thead]',
@@ -12,7 +12,7 @@ export class TheadComponent {
   @Input() root: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
+  @Output() somethingChanged = new EventEmitter<'clean' | 'edit' | 'add' | 'delete'>();
   @Output() fileLoaded = new EventEmitter<JsonValue>();
   @Output() sortDirectionChange = new EventEmitter<SortType>();
 
@@ -34,7 +34,7 @@ export class TheadComponent {
     node.edit = true;
     node.isNew = true;
     this.root.children.splice(0, 0, node);
-    this.valueChange.emit('add');
+    this.somethingChanged.emit('add');
   }
 
   loadFile(event: InputEvent) {

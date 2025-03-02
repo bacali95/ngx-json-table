@@ -1,6 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
-import { JsonTreeEvent } from '../../../lib/types';
 import { Icons, Settings } from '../../../lib/settings';
 
 @Component({
@@ -12,7 +11,7 @@ export class TrowComponent {
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
   @Input() icons: Icons;
-  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
+  @Output() somethingChanged = new EventEmitter<'clean' | 'edit' | 'add' | 'delete'>();
 
   constructor() {}
 

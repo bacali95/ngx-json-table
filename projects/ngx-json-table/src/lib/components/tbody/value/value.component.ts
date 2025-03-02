@@ -1,6 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
-import { JsonTreeEvent } from '../../../lib/types';
 import { Settings } from '../../../lib/settings';
 
 @Component({
@@ -11,7 +10,7 @@ import { Settings } from '../../../lib/settings';
 export class ValueComponent {
   @Input() item: JsonTreeNode;
   @Input() settings: Settings;
-  @Output() valueChange = new EventEmitter<JsonTreeEvent>();
+  @Output() somethingChanged = new EventEmitter<'clean' | 'edit' | 'add' | 'delete'>();
 
   constructor() {}
 
@@ -21,7 +20,7 @@ export class ValueComponent {
     this.item.edit && this.item.toggleEdit();
     if (this.item.isNew) {
       this.item.delete();
-      this.valueChange.emit('clean');
+      this.somethingChanged.emit('clean');
     }
   }
 
@@ -30,6 +29,6 @@ export class ValueComponent {
     if (this.item.checkNotUniqueKey()) return;
     this.item.toggleEdit();
     this.item.updateState();
-    this.valueChange.emit('edit');
+    this.somethingChanged.emit('edit');
   }
 }

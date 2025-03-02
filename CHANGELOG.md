@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.4](https://github.com/bacali95/ngx-json-table/compare/v2.1.3...v2.1.4) (2025-03-02)
+
+
+### Code Refactoring
+
+* replace lodash with native structuredClone for deep cloning ([8c2d55b](https://github.com/bacali95/ngx-json-table/commit/8c2d55b996482d2a5b3700597ca6a4e8bd7c58bd))
+
 ### [2.1.3](https://github.com/bacali95/ngx-json-table/compare/v2.1.2...v2.1.3) (2025-03-02)
 
 

@@ -161,8 +161,8 @@ describe('ValueComponent', () => {
     expect(editIcon).toBeFalsy();
   });
 
-  it('should emit valueChange event when value is edited', () => {
-    spyOn(component.valueChange, 'emit');
+  it('should emit somethingChanged event when value is edited', () => {
+    spyOn(component.somethingChanged, 'emit');
 
     // Enable edit mode
     settings.options.edit.value = true;
@@ -178,7 +178,7 @@ describe('ValueComponent', () => {
     component.onEnterKeyListener();
     fixture.detectChanges();
 
-    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('edit');
   });
 
   it('should add a new child when add icon is clicked for complex nodes', () => {
@@ -221,7 +221,7 @@ describe('ValueComponent', () => {
     component.item = childNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
 
     // Find and click delete icon
     const deleteIcon = fixture.debugElement.query(By.css('.delete-icon'));
@@ -231,7 +231,7 @@ describe('ValueComponent', () => {
 
       // Should have removed the child from parent
       expect(parentNode.children.length).toBe(0);
-      expect(component.valueChange.emit).toHaveBeenCalledWith('delete');
+      expect(component.somethingChanged.emit).toHaveBeenCalledWith('delete');
     }
   });
 
@@ -260,7 +260,7 @@ describe('ValueComponent', () => {
     component.item = testNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
     spyOn(testNode, 'resetState');
     spyOn(testNode, 'toggleEdit');
 
@@ -269,7 +269,7 @@ describe('ValueComponent', () => {
 
     expect(testNode.resetState).toHaveBeenCalled();
     expect(testNode.toggleEdit).toHaveBeenCalled();
-    expect(component.valueChange.emit).not.toHaveBeenCalled();
+    expect(component.somethingChanged.emit).not.toHaveBeenCalled();
   });
 
   it('should handle escape key for new items', () => {
@@ -280,14 +280,14 @@ describe('ValueComponent', () => {
     component.item = testNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
     spyOn(testNode, 'delete');
 
     // Trigger escape key
     component.onEscapeKeyListener();
 
     expect(testNode.delete).toHaveBeenCalled();
-    expect(component.valueChange.emit).toHaveBeenCalledWith('clean');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('clean');
   });
 
   it('should handle enter key to save changes', () => {
@@ -297,7 +297,7 @@ describe('ValueComponent', () => {
     component.item = testNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
     spyOn(testNode, 'toggleEdit');
     spyOn(testNode, 'updateState');
     spyOn(testNode, 'checkNotUniqueKey').and.returnValue(false);
@@ -308,7 +308,7 @@ describe('ValueComponent', () => {
     expect(testNode.checkNotUniqueKey).toHaveBeenCalled();
     expect(testNode.toggleEdit).toHaveBeenCalled();
     expect(testNode.updateState).toHaveBeenCalled();
-    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('edit');
   });
 
   it('should not proceed with enter key if key is not unique', () => {
@@ -318,7 +318,7 @@ describe('ValueComponent', () => {
     component.item = testNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
     spyOn(testNode, 'toggleEdit');
     spyOn(testNode, 'checkNotUniqueKey').and.returnValue(true);
 
@@ -327,6 +327,6 @@ describe('ValueComponent', () => {
 
     expect(testNode.checkNotUniqueKey).toHaveBeenCalled();
     expect(testNode.toggleEdit).not.toHaveBeenCalled();
-    expect(component.valueChange.emit).not.toHaveBeenCalled();
+    expect(component.somethingChanged.emit).not.toHaveBeenCalled();
   });
 });

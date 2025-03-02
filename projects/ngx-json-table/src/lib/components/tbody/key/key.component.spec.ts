@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { KeyComponent } from './key.component';
 import { NgxJsonTableModule } from '../../../ngx-json-table.module';
 import { JsonTreeNode } from '../../../lib/json-tree-node';
@@ -188,7 +188,7 @@ describe('KeyComponent', () => {
   });
 
   it('should emit valueChange event when key is edited', () => {
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
 
     // Enable edit mode
     settings.options.edit.key = true;
@@ -204,7 +204,7 @@ describe('KeyComponent', () => {
     component.onEnterKeyListener();
     fixture.detectChanges();
 
-    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('edit');
   });
 
   it('should add a child node when addChild is called', () => {
@@ -213,7 +213,7 @@ describe('KeyComponent', () => {
     component.item = complexNode;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
 
     // Call addChild method
     component.addChild(true, false);
@@ -224,7 +224,7 @@ describe('KeyComponent', () => {
     expect(complexNode.children[0].isNew).toBe(true);
     expect(complexNode.children[0].edit).toBe(true);
     expect(complexNode.children[0].type).toBe('object');
-    expect(component.valueChange.emit).toHaveBeenCalledWith('add');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('add');
   });
 
   it('should add an array child node when addChild is called with isArray=true', () => {
@@ -284,21 +284,13 @@ describe('KeyComponent', () => {
     expect(dropdownElement.style.display).toBe('none');
   });
 
-  it('should properly propagate value changes to parent', () => {
-    spyOn(component.valueChange, 'emit');
-
-    component.onValueChange('testValue');
-
-    expect(component.valueChange.emit).toHaveBeenCalledWith('testValue');
-  });
-
   it('should handle escape key to cancel editing', () => {
     // Enable edit mode
     settings.options.edit.key = true;
     component.item.edit = true;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
 
     // Trigger escape key event
     component.onEscapeKeyListener();
@@ -306,7 +298,7 @@ describe('KeyComponent', () => {
 
     expect(component.item.edit).toBe(false);
     // Shouldn't emit clean for regular items
-    expect(component.valueChange.emit).not.toHaveBeenCalled();
+    expect(component.somethingChanged.emit).not.toHaveBeenCalled();
   });
 
   it('should handle escape key for new items', () => {
@@ -315,7 +307,7 @@ describe('KeyComponent', () => {
     component.item.edit = true;
     fixture.detectChanges();
 
-    spyOn(component.valueChange, 'emit');
+    spyOn(component.somethingChanged, 'emit');
     spyOn(component.item, 'delete');
 
     // Trigger escape key event
@@ -323,6 +315,57 @@ describe('KeyComponent', () => {
     fixture.detectChanges();
 
     expect(component.item.delete).toHaveBeenCalled();
-    expect(component.valueChange.emit).toHaveBeenCalledWith('clean');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('clean');
   });
+
+  it('should handle delete field when delete icon is clicked', () => {
+    spyOn(component.item, 'delete').and.callThrough();
+
+    component.settings.options.delete = true;
+    component.item.showEditPanel = true;
+    component.item.parent = new JsonTreeNode(
+      'testParent',
+      '',
+      'object',
+      0,
+      true,
+      null,
+      [
+        component.item,
+        new JsonTreeNode('testChild', '', 'string', 0, false, component.item, [], true),
+      ],
+      true
+    );
+    fixture.detectChanges();
+
+    const deleteIcon = fixture.debugElement.query(By.css('.icon-delete-child'));
+    deleteIcon.nativeElement.click();
+    fixture.detectChanges();
+
+    expect(component.item.delete).toHaveBeenCalled();
+  });
+
+  it('should check the uniqueness of the key', fakeAsync(() => {
+    spyOn(component.item, 'checkNotUniqueKey').and.callThrough();
+
+    component.item.key = '';
+    fixture.detectChanges();
+
+    expect(component.onEnterKeyListener()).toBe(false);
+    expect(component.item.checkNotUniqueKey).toHaveBeenCalled();
+    expect(component.item.error).toBe(true);
+
+    component.item.key = 'testKey';
+    const parent = new JsonTreeNode('testParent', '', 'object', 0, false, null, [], true);
+    parent.addChild(component.item);
+    parent.addChild(new JsonTreeNode('testKey', '', 'string', 0, false, parent, [], true));
+    fixture.detectChanges();
+
+    expect(component.onEnterKeyListener()).toBe(false);
+    expect(component.item.checkNotUniqueKey).toHaveBeenCalled();
+    expect(component.item.error).toBe(true);
+
+    tick(2000);
+    expect(component.item.error).toBe(false);
+  }));
 });

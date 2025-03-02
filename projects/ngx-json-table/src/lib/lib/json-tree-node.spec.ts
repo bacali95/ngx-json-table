@@ -143,4 +143,19 @@ describe('JsonTreeNode', () => {
     expect(grandchildNode.parent).toBe(childNode);
     expect(childNode.parent).toBe(rootNode);
   });
+
+  it('should toggle show all children', () => {
+    const parentNode = new JsonTreeNode('parent', '', 'object', 0, false, null);
+    const childNode = new JsonTreeNode('child', '', 'object', 1, false, parentNode);
+    const grandchildNode = new JsonTreeNode('grandchild', '', 'object', 2, false, childNode);
+
+    parentNode.addChild(childNode);
+    childNode.addChild(grandchildNode);
+
+    parentNode.toggleShowChildren(true);
+
+    expect(parentNode.showChildren).toBe(true);
+    expect(childNode.showChildren).toBe(true);
+    expect(grandchildNode.showChildren).toBe(true);
+  });
 });

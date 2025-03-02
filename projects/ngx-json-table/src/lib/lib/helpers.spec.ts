@@ -126,5 +126,13 @@ describe('Helpers', () => {
 
       expect(result).toEqual({ a: 1, b: 2 });
     });
+
+    it('should prevent circular references', () => {
+      const target = { a: 1 };
+      const source = { a: target };
+      const result = deepExtend<Record<string, unknown>>(target, source);
+
+      expect(result).toEqual({ a: 1 });
+    });
   });
 });

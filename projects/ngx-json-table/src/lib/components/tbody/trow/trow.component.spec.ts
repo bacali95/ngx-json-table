@@ -60,6 +60,18 @@ describe('TRowComponent', () => {
     expect(valueComponent).toBeTruthy();
   });
 
+  it('should show and hide edit panel when mouse enters and leaves', () => {
+    fixture.debugElement.triggerEventHandler('mouseenter');
+    fixture.detectChanges();
+
+    expect(component.item.showEditPanel).toBe(true);
+
+    fixture.debugElement.triggerEventHandler('mouseleave');
+    fixture.detectChanges();
+
+    expect(component.item.showEditPanel).toBe(false);
+  });
+
   it('should apply indentation based on node level', () => {
     // Set node level
     node.level = 2;
@@ -71,23 +83,23 @@ describe('TRowComponent', () => {
     expect(keyComponent.styles['margin-left']).toBe('40px'); // 20px * level
   });
 
-  it('should emit valueChange event when key component emits valueChange', () => {
-    spyOn(component.valueChange, 'emit');
+  it('should emit somethingChanged event when key component emits somethingChanged', () => {
+    spyOn(component.somethingChanged, 'emit');
 
-    // Trigger valueChange event from key component
+    // Trigger somethingChanged event from key component
     const keyComponent = fixture.debugElement.query(By.css('[ngx-json-table-key]'));
-    keyComponent.triggerEventHandler('valueChange', 'edit');
+    keyComponent.triggerEventHandler('somethingChanged', 'edit');
 
-    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('edit');
   });
 
-  it('should emit valueChange event when value component emits valueChange', () => {
-    spyOn(component.valueChange, 'emit');
+  it('should emit somethingChanged event when value component emits somethingChanged', () => {
+    spyOn(component.somethingChanged, 'emit');
 
     // Trigger valueChange event from value component
     const valueComponent = fixture.debugElement.query(By.css('[ngx-json-table-value]'));
-    valueComponent.triggerEventHandler('valueChange', 'edit');
+    valueComponent.triggerEventHandler('somethingChanged', 'edit');
 
-    expect(component.valueChange.emit).toHaveBeenCalledWith('edit');
+    expect(component.somethingChanged.emit).toHaveBeenCalledWith('edit');
   });
 });

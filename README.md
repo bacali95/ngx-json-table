@@ -1,7 +1,7 @@
 # Angular JSON Table
 
+![NPM Version](https://img.shields.io/npm/v/ngx-json-table)
 [![CI Status](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bacali95/ngx-json-table/actions/workflows/ci.yml)
-[![npm version](https://badge.fury.io/js/ngx-json-table.svg)](https://badge.fury.io/js/ngx-json-table)
 [![codecov](https://codecov.io/gh/bacali95/ngx-json-table/graph/badge.svg?token=1SMJ9VD69B)](https://codecov.io/gh/bacali95/ngx-json-table)
 
 ngx-json-table is a flexible Angular component designed to display and edit JSON objects as HTML tables. The library provides powerful features for data manipulation, including inline adding, editing, and deleting of JSON properties and values.

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/bacali95/ngx-json-table/compare/v2.1.2...v2.1.3) (2025-03-02)
+
+
+### Documentation
+
+* reorder README badges and title ([8123ab4](https://github.com/bacali95/ngx-json-table/commit/8123ab43bd71b1c4b847fc8cd02cfe0fc739567b))
+
+
+### Code Refactoring
+
+* simplify property initialization with default values ([d140e23](https://github.com/bacali95/ngx-json-table/commit/d140e23f6a5e839c83ac2afa669abccf5814dbea))
+* standardize event naming and improve type safety across components ([42e9c53](https://github.com/bacali95/ngx-json-table/commit/42e9c53cf400aeeb09aae7ac8eccaab2ece0cc60))
+
 ### [2.1.2](https://github.com/bacali95/ngx-json-table/compare/v2.1.1...v2.1.2) (2025-03-01)
 
 
